@@ -1,4 +1,4 @@
 img(img/example.png);
 title(Titre du doc);
-author(Quentin Michel, Damian Petroff);
+author(*Quentin Michel*, **Damian Petroff**, ~Test~);
 date(today);
