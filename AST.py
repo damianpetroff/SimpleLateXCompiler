@@ -152,14 +152,48 @@ class DateNode(Node):
     def __init__(self, tok):
         Node.__init__(self)
         self.tok = tok
-        #fo  = open("test.tex", w)
-        #if((self.tok).lower() == "now"):
-        #    fo.write(\date{self.tok})
-        #else:
-
-
     def __repr__(self):
         return repr('Date: '+self.tok)
+
+class SectionNode(Node):
+    type = 'section'
+    def __init__(self, tok):
+        Node.__init__(self)
+        self.tok = tok
+    def __repr__(self):
+        return repr('Section: '+self.tok)
+
+class SubSectionNode(Node):
+    type = 'subsection'
+    def __init__(self, tok):
+        Node.__init__(self)
+        self.tok = tok
+    def __repr__(self):
+        return repr('Subsection: '+self.tok)
+
+class ChapterNode(Node):
+    type = 'chapter'
+    def __init__(self, tok):
+        Node.__init__(self)
+        self.tok = tok
+    def __repr__(self):
+        return repr('Chapter: '+self.tok)
+
+class MargeNode(Node):
+    type = 'marge'
+    def __init__(self, tok):
+        Node.__init__(self)
+        self.tok = tok
+    def __repr__(self):
+        return repr('Marge: '+self.tok)
+
+class FileNameNode(Node):
+    type = 'filename'
+    def __init__(self, tok):
+        Node.__init__(self)
+        self.tok = tok
+    def __repr__(self):
+        return repr('Filename: '+self.tok)
 
 class WhileNode(Node):
     type = 'while'

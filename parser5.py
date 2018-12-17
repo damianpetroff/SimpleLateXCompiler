@@ -33,6 +33,26 @@ def p_expression_image(p):
     ''' expression : IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
     p[0] = AST.ImageNode(p[3])
 
+def p_expression_section(p):
+    ''' expression : S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.SectionNode(p[3])
+
+def p_expression_subsection(p):
+    ''' expression : SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.SubSectionNode(p[3])
+
+def p_expression_chapter(p):
+    ''' expression : C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.ChapterNode(p[3])
+
+def p_expression_marge(p):
+    ''' expression : MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.MargeNode(p[3])
+
+def p_expression_filename(p):
+    ''' expression : FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.FileNameNode(p[3])
+
 def p_error(p):
     if p:
         print ("Syntax error in line %d" % p.lineno)
