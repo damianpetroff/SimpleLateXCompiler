@@ -14,7 +14,8 @@ def p_programme_recursive(p):
     p[0] = AST.ProgramNode([p[1]]+p[3].children)
 
 def p_statement(p):
-    ''' statement : expression SEMICOLON '''
+    ''' statement : expression SEMICOLON
+        | structure SEMICOLON '''
     p[0] = p[1]
 
 def p_expression_author(p):
@@ -33,6 +34,35 @@ def p_expression_image(p):
     ''' expression : IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
     p[0] = AST.ImageNode(p[3])
 
+def p_expression_section(p):
+    ''' expression : S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.SectionNode(p[3])
+
+def p_expression_subsection(p):
+    ''' expression : SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.SubSectionNode(p[3])
+
+def p_expression_chapter(p):
+    ''' expression : C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.ChapterNode(p[3])
+
+def p_expression_marge(p):
+    ''' expression : MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.MargeNode(p[3])
+
+def p_expression_filename(p):
+    ''' expression : FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.FileNameNode(p[3])
+
+def p_structure_bl(p):
+    ''' structure : BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc '''
+    p[0] = AST.BulletListNode([p[3],p[7]])
+
+def p_structure_bloc(p):
+    ''' structure : NEWLINE '{' NEWLINE programme NEWLINE '}' '''
+    # p[0] = AST.BlocNode()
+
+
 def p_error(p):
     if p:
         print ("Syntax error in line %d" % p.lineno)
@@ -48,7 +78,7 @@ yacc.yacc(outputdir='generated')
 if __name__ == "__main__":
     import sys
     prog = open(sys.argv[1]).read()
-    result = yacc.parse(prog, debug=False)
+    result = yacc.parse(prog, debug=True)
     if result:
         print(result)
         import os

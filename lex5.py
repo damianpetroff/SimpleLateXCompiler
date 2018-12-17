@@ -6,9 +6,12 @@ reserved_words = (
 	'img',
 	'title',
 	'marge',
-	'c',
-	's',
-	'ss'
+	'c', #chapter
+	's', #section
+	'ss', #subsection
+	'filename',
+	'bl', #bulletlist
+	'table',
 )
 
 tokens = (
