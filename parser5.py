@@ -56,11 +56,11 @@ def p_expression_filename(p):
 
 def p_structure_bl(p):
     ''' structure : BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc '''
-    p[0] = AST.BulletListNode([p[3],p[7]])
+    p[0] = AST.BulletListNode([p[3],p[5]])
 
-def p_structure_bloc(p):
-    ''' structure : NEWLINE '{' NEWLINE programme NEWLINE '}' '''
-    # p[0] = AST.BlocNode()
+def p_bloc(p):
+    ''' bloc : NEWLINE '{' NEWLINE programme NEWLINE '}' '''
+    p[0] = AST.BlocNode(p[4])
 
 
 def p_error(p):
