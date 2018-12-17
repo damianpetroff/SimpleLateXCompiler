@@ -7,7 +7,3 @@ date(today);
 c(test chapitre);
 s(test section);
 ss(test subsection);
-bl
-{
-
-}
