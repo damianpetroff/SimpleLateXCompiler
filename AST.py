@@ -195,8 +195,17 @@ class FileNameNode(Node):
     def __repr__(self):
         return repr('Filename: '+self.tok)
 
-class WhileNode(Node):
-    type = 'while'
+class BulletListNode(Node):
+    type = 'bulletlist'
+    def __init__(self, tok):
+        Node.__init__(self)
+        self.tok = tok
+    def __repr__(self):
+        return repr('Bulletlist: '+self.tok)
+
+    #def execute(self):
+    #    while self.children[0].execute():
+    #        self.children[1].execute()
 
 class EntryNode(Node):
     type = 'ENTRY'
