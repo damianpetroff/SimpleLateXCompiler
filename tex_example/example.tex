@@ -1,0 +1,71 @@
+\documentclass[a4paper,10pt,openany,oneside]{report}
+
+\usepackage{amsfonts}
+\usepackage{pstricks}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[french]{babel}
+\usepackage{changepage}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm,headsep=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{listings} %Pour le code
+\usepackage{titlepic}
+\usepackage{wrapfig}
+\usepackage{longtable}
+
+\setitemize{topsep=5pt}
+\setlength{\parindent}{1em}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{myblue}{rgb}{0,0,1}
+\definecolor{bonus}{rgb}{1,0.7,0}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\lstset{frame=tb,
+  language=C++,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\normalsize,
+  numbersep=7pt,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
+
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{figure}
+\centering
+\vspace*{1cm}
+\includegraphics[width=0.7\textwidth]{img/example.png}
+\end{figure}
+\vspace*{3cm}
+\begin{center}
+\textbf{\Huge{Titre du doc}} \\[1cm]
+{\Large Quentin Michel, Damian Petroff}\\[5cm]
+\today
+\end{center}
+\end{document}

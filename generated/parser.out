@@ -1,0 +1,233 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    C
+    MARGE
+    S
+    SS
+
+Grammar
+
+Rule 0     S' -> programme
+Rule 1     programme -> statement NEWLINE
+Rule 2     programme -> statement NEWLINE programme
+Rule 3     statement -> expression SEMICOLON
+Rule 4     expression -> AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+Rule 5     expression -> DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+Rule 6     expression -> TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+Rule 7     expression -> IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+
+Terminals, with rules where they appear
+
+AUTHOR               : 4
+C                    : 
+DATE                 : 5
+IDENTIFIER           : 4 5 6 7
+IMG                  : 7
+MARGE                : 
+NEWLINE              : 1 2
+PARANTHESIS_CLOSE    : 4 5 6 7
+PARANTHESIS_OPEN     : 4 5 6 7
+S                    : 
+SEMICOLON            : 3
+SS                   : 
+TITLE                : 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 3
+programme            : 2 0
+statement            : 1 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programme
+    (1) programme -> . statement NEWLINE
+    (2) programme -> . statement NEWLINE programme
+    (3) statement -> . expression SEMICOLON
+    (4) expression -> . AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (5) expression -> . DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (6) expression -> . TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (7) expression -> . IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+
+    AUTHOR          shift and go to state 4
+    DATE            shift and go to state 5
+    TITLE           shift and go to state 6
+    IMG             shift and go to state 7
+
+    programme                      shift and go to state 1
+    statement                      shift and go to state 2
+    expression                     shift and go to state 3
+
+state 1
+
+    (0) S' -> programme .
+
+
+
+state 2
+
+    (1) programme -> statement . NEWLINE
+    (2) programme -> statement . NEWLINE programme
+
+    NEWLINE         shift and go to state 8
+
+
+state 3
+
+    (3) statement -> expression . SEMICOLON
+
+    SEMICOLON       shift and go to state 9
+
+
+state 4
+
+    (4) expression -> AUTHOR . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+
+    PARANTHESIS_OPEN shift and go to state 10
+
+
+state 5
+
+    (5) expression -> DATE . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+
+    PARANTHESIS_OPEN shift and go to state 11
+
+
+state 6
+
+    (6) expression -> TITLE . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+
+    PARANTHESIS_OPEN shift and go to state 12
+
+
+state 7
+
+    (7) expression -> IMG . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+
+    PARANTHESIS_OPEN shift and go to state 13
+
+
+state 8
+
+    (1) programme -> statement NEWLINE .
+    (2) programme -> statement NEWLINE . programme
+    (1) programme -> . statement NEWLINE
+    (2) programme -> . statement NEWLINE programme
+    (3) statement -> . expression SEMICOLON
+    (4) expression -> . AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (5) expression -> . DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (6) expression -> . TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (7) expression -> . IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+
+    $end            reduce using rule 1 (programme -> statement NEWLINE .)
+    AUTHOR          shift and go to state 4
+    DATE            shift and go to state 5
+    TITLE           shift and go to state 6
+    IMG             shift and go to state 7
+
+    statement                      shift and go to state 2
+    programme                      shift and go to state 14
+    expression                     shift and go to state 3
+
+state 9
+
+    (3) statement -> expression SEMICOLON .
+
+    NEWLINE         reduce using rule 3 (statement -> expression SEMICOLON .)
+
+
+state 10
+
+    (4) expression -> AUTHOR PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
+
+    IDENTIFIER      shift and go to state 15
+
+
+state 11
+
+    (5) expression -> DATE PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
+
+    IDENTIFIER      shift and go to state 16
+
+
+state 12
+
+    (6) expression -> TITLE PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
+
+    IDENTIFIER      shift and go to state 17
+
+
+state 13
+
+    (7) expression -> IMG PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
+
+    IDENTIFIER      shift and go to state 18
+
+
+state 14
+
+    (2) programme -> statement NEWLINE programme .
+
+    $end            reduce using rule 2 (programme -> statement NEWLINE programme .)
+
+
+state 15
+
+    (4) expression -> AUTHOR PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
+
+    PARANTHESIS_CLOSE shift and go to state 19
+
+
+state 16
+
+    (5) expression -> DATE PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
+
+    PARANTHESIS_CLOSE shift and go to state 20
+
+
+state 17
+
+    (6) expression -> TITLE PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
+
+    PARANTHESIS_CLOSE shift and go to state 21
+
+
+state 18
+
+    (7) expression -> IMG PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
+
+    PARANTHESIS_CLOSE shift and go to state 22
+
+
+state 19
+
+    (4) expression -> AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
+
+    SEMICOLON       reduce using rule 4 (expression -> AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
+
+
+state 20
+
+    (5) expression -> DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
+
+    SEMICOLON       reduce using rule 5 (expression -> DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
+
+
+state 21
+
+    (6) expression -> TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
+
+    SEMICOLON       reduce using rule 6 (expression -> TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
+
+
+state 22
+
+    (7) expression -> IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
+
+    SEMICOLON       reduce using rule 7 (expression -> IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
+

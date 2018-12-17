@@ -1,0 +1,43 @@
+soit i
+tant que i < 5:
+incremente i;
+:
+
+si b-a < c:
+affiche fromage
+:
+
+----------------
+
+Latek :
+
+IDEE 1 :
+
+tm:on
+c:Fromage
+p:kutjtkuzskssll\
+
+-------
+
+
+IDEE 2 :
+
+author(Quentin Michel)
+date(now)
+marge(auto)
+t1(Titre1)
+t2(Titre2)
+c(Chapitre)
+s(Section)
+ss(SubSection)
+sss(...)
+p(Paragraphe)
+p(Par\bold(grap)he)
+table(4//3)
+{
+table[1//2](...)
+table[...](...)
+
+}
+bl(fromage1//fromage2//fromage3)
+img(link)
