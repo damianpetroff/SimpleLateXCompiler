@@ -61,9 +61,32 @@ def execute(node):
 		else:
 			node = None
 
+def generate_pdf(filename,stringOutput):
+	"""
+	Genertates the pdf from string
+	"""
+	import subprocess
+	import os
+	import tempfile
+	import shutil
+	rootDir = os.getcwd()
+	pdfname = filename+'.pdf'
+	texname = filename+'.tex'
+	outputFolder = 'output'
+	outputPath = os.path.join(os.getcwd(),outputFolder)
+	if not os.path.exists(outputPath):
+	    os.makedirs(outputPath)
+	filePath = os.path.join(outputPath, texname)
+	f = open(filePath,'w')
+	f.write(stringOutput)
+	f.close()
+	rootDir = os.getcwd()
+	os.chdir(outputPath)
+	os.system('pdflatex -interaction=nonstopmode -file-line-error --shell-escape -halt-on-error'+' '+filePath)
+	os.remove(filename+'.aux')
+	os.chdir(rootDir)
 
 if __name__ == "__main__":
-
 	from parser5 import parse
 	from threader import thread
 	import sys
@@ -72,7 +95,10 @@ if __name__ == "__main__":
 	entry = thread(ast)
 
 	execute(entry)
-	stringOutput =  '\\begin{document}\n'
+	stringOutput = '\\documentclass[a4paper,10pt,openany,oneside]{report}'
+	stringOutput += '\\usepackage[left=1cm,right=4cm,top=2cm,includefoot]{geometry}\n'
+	stringOutput += '\\usepackage{graphicx}\n'
+	stringOutput += '\\begin{document}\n'
 	stringOutput += '\\pagenumbering{gobble}\n'
 	if(boolVars['Img']):
 		stringOutput += '\\begin{figure}\n'
@@ -88,6 +114,10 @@ if __name__ == "__main__":
 	stringOutput += '\\end{center}\n'
 	stringOutput += "\\end{document}\n"
 
-	print(titlePageVars['Author'])
+	filename = 'PerfectDocument'
+	generate_pdf(filename, stringOutput)
 
-	print(stringOutput)
+	# commande :
+	# pdflatex -synctex=1 -interaction=nonstopmode  --shell-escape testDocument.tex
+
+# Problem : If images are needed into the document, they must be moved where the temporary file will be created.
