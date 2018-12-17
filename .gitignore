@@ -1,4 +1,12 @@
-# Byte-compiled / optimized / DLL files
+*.pdf
+*.docx
+*.aux
+*.dvi
+*.log
+*.out
+*.syn*
+*.toc
+
 __pycache__/
 *.py[cod]
 *$py.class
