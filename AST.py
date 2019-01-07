@@ -195,13 +195,21 @@ class FileNameNode(Node):
     def __repr__(self):
         return repr('Filename: '+self.tok)
 
+class ParagraphNode(Node):
+    type = 'paragraph'
+    def __init__(self, tok):
+        Node.__init__(self)
+        self.tok = tok
+    def __repr__(self):
+        return repr('Paragraph: '+self.tok)
+
 class BulletListNode(Node):
     type = 'bulletlist'
     def __init__(self, tok):
         Node.__init__(self)
         self.tok = tok
     def __repr__(self):
-        return repr('Bulletlist: '+self.tok.__repr__)
+        return repr('Bulletlist: '+self.tok.__repr__())
 
 class BlocNode(Node):
     type = 'bloc'
@@ -209,9 +217,12 @@ class BlocNode(Node):
         Node.__init__(self)
         self.tok = tok
     def __repr__(self):
-        tokens = self.tok
-        print(tokens)
-        return repr('Bloc: '+tokens)
+        t = 'Bloc :'
+        for tok in self.tok.children:
+            if type(tok) is not ParagraphNode:
+                self.tok.children.remove(tok)
+            t += tok.__repr__()
+        return t
 
     #def execute(self):
     #    while self.children[0].execute():
