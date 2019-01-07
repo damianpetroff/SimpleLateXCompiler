@@ -59,7 +59,7 @@ def p_structure_bl(p):
     p[0] = AST.BulletListNode([p[3],p[5]])
 
 def p_bloc(p):
-    ''' bloc : NEWLINE '{' NEWLINE programme NEWLINE '}' '''
+    ''' bloc : NEWLINE '{' NEWLINE programme '}' '''
     p[0] = AST.BlocNode(p[4])
 
 

@@ -20,7 +20,8 @@ Rule 10    expression -> SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
 Rule 11    expression -> C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
 Rule 12    expression -> MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
 Rule 13    expression -> FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-Rule 14    structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE NEWLINE { NEWLINE programme NEWLINE }
+Rule 14    structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
+Rule 15    bloc -> NEWLINE { NEWLINE programme }
 
 Terminals, with rules where they appear
 
@@ -32,7 +33,7 @@ FILENAME             : 13
 IDENTIFIER           : 5 6 7 8 9 10 11 12 13 14
 IMG                  : 8
 MARGE                : 12
-NEWLINE              : 1 2 14 14 14
+NEWLINE              : 1 2 15 15
 PARANTHESIS_CLOSE    : 5 6 7 8 9 10 11 12 13 14
 PARANTHESIS_OPEN     : 5 6 7 8 9 10 11 12 13 14
 S                    : 9
@@ -41,13 +42,14 @@ SS                   : 10
 TABLE                : 
 TITLE                : 7
 error                : 
-{                    : 14
-}                    : 14
+{                    : 15
+}                    : 15
 
 Nonterminals, with rules where they appear
 
+bloc                 : 14
 expression           : 3
-programme            : 2 14 0
+programme            : 2 15 0
 statement            : 1 2
 structure            : 4
 
@@ -69,7 +71,7 @@ state 0
     (11) expression -> . C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
     (12) expression -> . MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
     (13) expression -> . FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (14) structure -> . BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE NEWLINE { NEWLINE programme NEWLINE }
+    (14) structure -> . BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
 
     AUTHOR          shift and go to state 5
     DATE            shift and go to state 6
@@ -180,7 +182,7 @@ state 13
 
 state 14
 
-    (14) structure -> BL . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE NEWLINE { NEWLINE programme NEWLINE }
+    (14) structure -> BL . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
 
     PARANTHESIS_OPEN shift and go to state 27
 
@@ -202,10 +204,10 @@ state 15
     (11) expression -> . C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
     (12) expression -> . MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
     (13) expression -> . FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (14) structure -> . BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE NEWLINE { NEWLINE programme NEWLINE }
+    (14) structure -> . BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
 
     $end            reduce using rule 1 (programme -> statement NEWLINE .)
-    NEWLINE         reduce using rule 1 (programme -> statement NEWLINE .)
+    }               reduce using rule 1 (programme -> statement NEWLINE .)
     AUTHOR          shift and go to state 5
     DATE            shift and go to state 6
     TITLE           shift and go to state 7
@@ -301,7 +303,7 @@ state 26
 
 state 27
 
-    (14) structure -> BL PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE NEWLINE { NEWLINE programme NEWLINE }
+    (14) structure -> BL PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE bloc
 
     IDENTIFIER      shift and go to state 38
 
@@ -311,7 +313,7 @@ state 28
     (2) programme -> statement NEWLINE programme .
 
     $end            reduce using rule 2 (programme -> statement NEWLINE programme .)
-    NEWLINE         reduce using rule 2 (programme -> statement NEWLINE programme .)
+    }               reduce using rule 2 (programme -> statement NEWLINE programme .)
 
 
 state 29
@@ -379,7 +381,7 @@ state 37
 
 state 38
 
-    (14) structure -> BL PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE NEWLINE { NEWLINE programme NEWLINE }
+    (14) structure -> BL PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE bloc
 
     PARANTHESIS_CLOSE shift and go to state 48
 
@@ -449,28 +451,37 @@ state 47
 
 state 48
 
-    (14) structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE . NEWLINE { NEWLINE programme NEWLINE }
+    (14) structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE . bloc
+    (15) bloc -> . NEWLINE { NEWLINE programme }
 
-    NEWLINE         shift and go to state 49
+    NEWLINE         shift and go to state 50
 
+    bloc                           shift and go to state 49
 
 state 49
 
-    (14) structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE NEWLINE . { NEWLINE programme NEWLINE }
+    (14) structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc .
 
-    {               shift and go to state 50
+    SEMICOLON       reduce using rule 14 (structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc .)
 
 
 state 50
 
-    (14) structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE NEWLINE { . NEWLINE programme NEWLINE }
+    (15) bloc -> NEWLINE . { NEWLINE programme }
 
-    NEWLINE         shift and go to state 51
+    {               shift and go to state 51
 
 
 state 51
 
-    (14) structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE NEWLINE { NEWLINE . programme NEWLINE }
+    (15) bloc -> NEWLINE { . NEWLINE programme }
+
+    NEWLINE         shift and go to state 52
+
+
+state 52
+
+    (15) bloc -> NEWLINE { NEWLINE . programme }
     (1) programme -> . statement NEWLINE
     (2) programme -> . statement NEWLINE programme
     (3) statement -> . expression SEMICOLON
@@ -484,7 +495,7 @@ state 51
     (11) expression -> . C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
     (12) expression -> . MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
     (13) expression -> . FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (14) structure -> . BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE NEWLINE { NEWLINE programme NEWLINE }
+    (14) structure -> . BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
 
     AUTHOR          shift and go to state 5
     DATE            shift and go to state 6
@@ -497,28 +508,21 @@ state 51
     FILENAME        shift and go to state 13
     BL              shift and go to state 14
 
-    programme                      shift and go to state 52
+    programme                      shift and go to state 53
     statement                      shift and go to state 2
     expression                     shift and go to state 3
     structure                      shift and go to state 4
 
-state 52
-
-    (14) structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE NEWLINE { NEWLINE programme . NEWLINE }
-
-    NEWLINE         shift and go to state 53
-
-
 state 53
 
-    (14) structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE NEWLINE { NEWLINE programme NEWLINE . }
+    (15) bloc -> NEWLINE { NEWLINE programme . }
 
     }               shift and go to state 54
 
 
 state 54
 
-    (14) structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE NEWLINE { NEWLINE programme NEWLINE } .
+    (15) bloc -> NEWLINE { NEWLINE programme } .
 
-    SEMICOLON       reduce using rule 14 (structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE NEWLINE { NEWLINE programme NEWLINE } .)
+    SEMICOLON       reduce using rule 15 (bloc -> NEWLINE { NEWLINE programme } .)
 

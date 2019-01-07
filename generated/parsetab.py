@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = "AUTHOR BL C DATE FILENAME IDENTIFIER IMG MARGE NEWLINE PARANTHESIS_CLOSE PARANTHESIS_OPEN S SEMICOLON SS TABLE TITLE programme : statement NEWLINE programme : statement NEWLINE programme  statement : expression SEMICOLON\n        | structure SEMICOLON  expression : AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  structure : BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE NEWLINE '{' NEWLINE programme NEWLINE '}' "
+_lr_signature = "AUTHOR BL C DATE FILENAME IDENTIFIER IMG MARGE NEWLINE PARANTHESIS_CLOSE PARANTHESIS_OPEN S SEMICOLON SS TABLE TITLE programme : statement NEWLINE programme : statement NEWLINE programme  statement : expression SEMICOLON\n        | structure SEMICOLON  expression : AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  structure : BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc  bloc : NEWLINE '{' NEWLINE programme '}' "
     
-_lr_action_items = {'AUTHOR':([0,15,51,],[5,5,5,]),'DATE':([0,15,51,],[6,6,6,]),'TITLE':([0,15,51,],[7,7,7,]),'IMG':([0,15,51,],[8,8,8,]),'S':([0,15,51,],[9,9,9,]),'SS':([0,15,51,],[10,10,10,]),'C':([0,15,51,],[11,11,11,]),'MARGE':([0,15,51,],[12,12,12,]),'FILENAME':([0,15,51,],[13,13,13,]),'BL':([0,15,51,],[14,14,14,]),'$end':([1,15,28,],[0,-1,-2,]),'NEWLINE':([2,15,16,17,28,48,50,52,],[15,-1,-3,-4,-2,49,51,53,]),'SEMICOLON':([3,4,39,40,41,42,43,44,45,46,47,54,],[16,17,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,]),'PARANTHESIS_OPEN':([5,6,7,8,9,10,11,12,13,14,],[18,19,20,21,22,23,24,25,26,27,]),'IDENTIFIER':([18,19,20,21,22,23,24,25,26,27,],[29,30,31,32,33,34,35,36,37,38,]),'PARANTHESIS_CLOSE':([29,30,31,32,33,34,35,36,37,38,],[39,40,41,42,43,44,45,46,47,48,]),'{':([49,],[50,]),'}':([53,],[54,]),}
+_lr_action_items = {'AUTHOR':([0,15,52,],[5,5,5,]),'DATE':([0,15,52,],[6,6,6,]),'TITLE':([0,15,52,],[7,7,7,]),'IMG':([0,15,52,],[8,8,8,]),'S':([0,15,52,],[9,9,9,]),'SS':([0,15,52,],[10,10,10,]),'C':([0,15,52,],[11,11,11,]),'MARGE':([0,15,52,],[12,12,12,]),'FILENAME':([0,15,52,],[13,13,13,]),'BL':([0,15,52,],[14,14,14,]),'$end':([1,15,28,],[0,-1,-2,]),'NEWLINE':([2,16,17,48,51,],[15,-3,-4,50,52,]),'SEMICOLON':([3,4,39,40,41,42,43,44,45,46,47,49,54,],[16,17,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,]),'PARANTHESIS_OPEN':([5,6,7,8,9,10,11,12,13,14,],[18,19,20,21,22,23,24,25,26,27,]),'}':([15,28,53,],[-1,-2,54,]),'IDENTIFIER':([18,19,20,21,22,23,24,25,26,27,],[29,30,31,32,33,34,35,36,37,38,]),'PARANTHESIS_CLOSE':([29,30,31,32,33,34,35,36,37,38,],[39,40,41,42,43,44,45,46,47,48,]),'{':([50,],[51,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programme':([0,15,51,],[1,28,52,]),'statement':([0,15,51,],[2,2,2,]),'expression':([0,15,51,],[3,3,3,]),'structure':([0,15,51,],[4,4,4,]),}
+_lr_goto_items = {'programme':([0,15,52,],[1,28,53,]),'statement':([0,15,52,],[2,2,2,]),'expression':([0,15,52,],[3,3,3,]),'structure':([0,15,52,],[4,4,4,]),'bloc':([48,],[49,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -40,5 +40,6 @@ _lr_productions = [
   ('expression -> C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_chapter','parser5.py',46),
   ('expression -> MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_marge','parser5.py',50),
   ('expression -> FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_filename','parser5.py',54),
-  ('structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE NEWLINE { NEWLINE programme NEWLINE }','structure',10,'p_structure_bl','parser5.py',58),
+  ('structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc','structure',5,'p_structure_bl','parser5.py',58),
+  ('bloc -> NEWLINE { NEWLINE programme }','bloc',5,'p_bloc','parser5.py',62),
 ]
