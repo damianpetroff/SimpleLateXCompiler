@@ -66,6 +66,10 @@ def p_structure_bl(p):
     ''' structure : BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc '''
     p[0] = AST.BulletListNode([p[3],p[5]])
 
+def p_structure_table(p):
+    ''' structure : TABLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc '''
+    p[0] = AST.TableNode([p[3],p[5]])
+
 def p_bloc(p):
     ''' bloc : NEWLINE '{' NEWLINE programme '}' '''
     p[0] = AST.BlocNode(p[4])

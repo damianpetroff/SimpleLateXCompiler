@@ -1,9 +1,9 @@
 ﻿# coding: utf-8
 
 ''' Petit module utilitaire pour la construction, la manipulation et la
-repr�sentation d'arbres syntaxiques abstraits.
+représentation d'arbres syntaxiques abstraits.
 
-S�rement plein de bugs et autres surprises. � prendre comme un
+Sûrement plein de bugs et autres surprises. � prendre comme un
 "work in progress"...
 Notamment, l'utilisation de pydot pour repr�senter un arbre syntaxique cousu
 est une utilisation un peu "limite" de graphviz. �a marche, mais le layout n'est
@@ -218,6 +218,14 @@ class BulletListNode(Node):
         self.tok = tok
     def __repr__(self):
         return repr('Bulletlist: '+self.tok.__repr__())
+
+class TableNode(Node):
+    type = 'table'
+    def __init__(self, tok):
+        Node.__init__(self)
+        self.tok = tok
+    def __repr__(self):
+        return repr('Table: '+self.tok.__repr__())
 
 class BlocNode(Node):
     type = 'bloc'
