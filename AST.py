@@ -1,4 +1,4 @@
-# coding: latin-1
+﻿# coding: latin-1
 
 ''' Petit module utilitaire pour la construction, la manipulation et la
 repr�sentation d'arbres syntaxiques abstraits.
@@ -195,6 +195,14 @@ class FileNameNode(Node):
     def __repr__(self):
         return repr('Filename: '+self.tok)
 
+class ParagraphNode(Node):
+    type = 'paragraph'
+    def __init__(self, tok):
+        Node.__init__(self)
+        self.tok = tok
+    def __repr__(self):
+        return repr('Paragraph: '+self.tok)
+
 class BulletListNode(Node):
     type = 'bulletlist'
     def __init__(self, tok):
@@ -209,9 +217,10 @@ class BlocNode(Node):
         Node.__init__(self)
         self.tok = tok
     def __repr__(self):
-        tokens = self.tok.children
         t = 'Bloc :'
-        for tok in tokens:
+        for tok in self.tok.children:
+            if type(tok) is not ParagraphNode:
+                self.tok.children.remove(tok)
             t += tok.__repr__()
         return t
 

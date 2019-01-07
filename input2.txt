@@ -6,5 +6,5 @@ s(test);
 
 bl(number)
 {
-
+p(test)
 };
