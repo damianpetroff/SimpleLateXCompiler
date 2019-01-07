@@ -8,14 +8,6 @@ def thread(self, lastNode):
     lastNode.addNext(self)
     return self
 
-@addToClass(AST.WhileNode)
-def thread(self, lastNode):
-    cond = self.children[0].thread(lastNode)
-    cond.addNext(self)
-    body = self.children[1].thread(self)
-    body.addNext(lastNode.next[-1]) #Pour sortir de la boucle à l'endroit où on y est rentré
-    return self
-
 #useless for now because DateNode and Author node heritate from Node
 @addToClass(AST.DateNode)
 def thread(self, lastNode):

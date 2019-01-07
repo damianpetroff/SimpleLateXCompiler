@@ -32,12 +32,14 @@ def valueOfToken(t):
 def execute(node):
 	global titlePageVars
 	global boolVars
+	body = ""
+	body += '\\tableofcontents\n'
 	while node:
 		if node.__class__ == AST.AuthorNode:
 			val = node.tok
 			boolVars['Author'] = True
 			titlePageVars['Author'] = str(val)
-		if node.__class__ == AST.ImageNode:
+		elif node.__class__ == AST.ImageNode:
 			val = node.tok
 			boolVars['Img'] = True
 			titlePageVars['Img'] = str(val)
@@ -52,6 +54,22 @@ def execute(node):
 				titlePageVars['Date'] = '\\today'
 			else:
 				titlePageVars['Date'] = str(val)
+		elif node.__class__ == AST.MargeNode:
+			val = node.tok
+			boolVars['Marge'] = True
+			titlePageVars['Marge'] = str(val)
+		elif node.__class__ == AST.ChapterNode:
+			val = node.tok
+			body += '\\chapter{'+val+'}\n'
+		elif node.__class__ == AST.SectionNode:
+			val = node.tok
+			body += '\\section{'+val+'}\n'
+		elif node.__class__ == AST.SubSectionNode:
+			val = node.tok
+			body += '\\subsection{'+val+'}\n'
+		elif node.__class__ == AST.SubSubSectionNode:
+			val = node.tok
+			body += '\\subsubsection{'+val+'}\n'
 		elif node.__class__ in [AST.EntryNode, AST.ProgramNode]:
 			pass
 		elif node.__class__ == AST.TokenNode:
@@ -60,6 +78,7 @@ def execute(node):
 			node = node.next[0]
 		else:
 			node = None
+	return body
 
 def generate_pdf(filename,stringOutput):
 	"""
@@ -83,7 +102,10 @@ def generate_pdf(filename,stringOutput):
 	rootDir = os.getcwd()
 	os.chdir(outputPath)
 	os.system('pdflatex -interaction=nonstopmode -file-line-error --shell-escape -halt-on-error'+' '+filePath)
-	os.remove(filename+'.aux')
+	try:
+		os.remove(filename+'.aux')
+	except FileNotFoundError:
+		print(filename+'.aux not found')
 	os.chdir(rootDir)
 
 if __name__ == "__main__":
@@ -93,18 +115,19 @@ if __name__ == "__main__":
 	prog = open(sys.argv[1]).read()
 	ast = parse(prog)
 	entry = thread(ast)
-
-	execute(entry)
-	stringOutput = '\\documentclass[a4paper,10pt,openany,oneside]{report}'
-	stringOutput += '\\usepackage[left=1cm,right=4cm,top=2cm,includefoot]{geometry}\n'
+	body = execute(entry)
+	stringOutput = '\\documentclass[a4paper,10pt,openany,oneside]{report}\n'
+	if boolVars['Marge'] and titlePageVars['Marge'] == 'auto':
+		stringOutput += '\\usepackage[left=2cm,right=2cm,top=2cm,includefoot]{geometry}\n'
 	stringOutput += '\\usepackage{graphicx}\n'
+	stringOutput += '\\usepackage{tabularx}\n'
 	stringOutput += '\\begin{document}\n'
 	stringOutput += '\\pagenumbering{gobble}\n'
-	if(boolVars['Img']):
+	if boolVars['Img']:
 		stringOutput += '\\begin{figure}\n'
 		stringOutput += '\\centering\n'
 		stringOutput += '\\vspace*{1cm}\n'
-		stringOutput += '\\includegraphics[width=0.7\\textwidth]{'+titlePageVars['Img']+'}\n'
+		stringOutput += '\\includegraphics[width=0.6\\textwidth]{'+titlePageVars['Img']+'}\n'
 		stringOutput += '\\end{figure}\n'
 	stringOutput += '\\vspace*{3cm}\n'
 	stringOutput += '\\begin{center}\n'
@@ -112,8 +135,8 @@ if __name__ == "__main__":
 	stringOutput += '{\\Large '+titlePageVars['Author']+'} \\\\[5cm]\n'
 	stringOutput += titlePageVars['Date']+'\n'
 	stringOutput += '\\end{center}\n'
+	stringOutput += body
 	stringOutput += "\\end{document}\n"
-
 	filename = 'PerfectDocument'
 	generate_pdf(filename, stringOutput)
 

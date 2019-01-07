@@ -6,10 +6,11 @@ reserved_words = (
 	'img',
 	'title',
 	'marge',
-	'p', #paragraphe
+	'p', #paragraph
 	'c', #chapter
 	's', #section
 	'ss', #subsection
+	'sss', #subsubsection
 	'filename',
 	'bl', #bulletlist
 	'table',

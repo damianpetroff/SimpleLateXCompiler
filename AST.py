@@ -1,4 +1,4 @@
-﻿# coding: latin-1
+﻿# coding: utf-8
 
 ''' Petit module utilitaire pour la construction, la manipulation et la
 repr�sentation d'arbres syntaxiques abstraits.
@@ -170,6 +170,14 @@ class SubSectionNode(Node):
         self.tok = tok
     def __repr__(self):
         return repr('Subsection: '+self.tok)
+
+class SubSubSectionNode(Node):
+    type = 'subsubsection'
+    def __init__(self, tok):
+        Node.__init__(self)
+        self.tok = tok
+    def __repr__(self):
+        return repr('SubSubsection: '+self.tok)
 
 class ChapterNode(Node):
     type = 'chapter'

@@ -1,36 +1,22 @@
 \documentclass[a4paper,10pt,openany,oneside]{report}
-
-\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm,headsep=1cm]{geometry}
+\usepackage[left=2cm,right=2cm,top=2cm,includefoot]{geometry}
 \usepackage{graphicx}
-%\usepackage{amsfonts}
-%\usepackage{pstricks}
-%\usepackage{amsmath}
-%\usepackage{amssymb}
-\usepackage[french]{babel}
-%\usepackage{changepage}
-%\usepackage{color}
-%\usepackage{enumitem}
-\usepackage{fancyhdr}
-\usepackage[T1]{fontenc}
-\usepackage[hidelinks]{hyperref}
-\usepackage[utf8]{inputenc}
-%\usepackage{listings}  %Pour le code
-%\usepackage{titlepic}
-%\usepackage{wrapfig}
-%\usepackage{longtable}
-
-
+\usepackage{tabularx}
 \begin{document}
 \pagenumbering{gobble}
 \begin{figure}
 \centering
 \vspace*{1cm}
-\includegraphics[width=0.7\textwidth]{img/example.png}
+\includegraphics[width=0.6\textwidth]{img/example.png}
 \end{figure}
 \vspace*{3cm}
 \begin{center}
-\textbf{\Huge{Titre du doc}} \\[1cm]
+\textbf{\Huge{SimpleLateXCompiler}} \\[1cm]
 {\Large Quentin Michel, Damian Petroff} \\[5cm]
 \today
 \end{center}
+\tableofcontents
+\chapter{test chapitre}
+\section{test section}
+\subsection{test subsection}
 \end{document}

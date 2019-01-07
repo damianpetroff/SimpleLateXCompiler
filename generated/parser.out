@@ -13,43 +13,47 @@ Rule 3     statement -> expression SEMICOLON
 Rule 4     statement -> structure SEMICOLON
 Rule 5     expression -> AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
 Rule 6     expression -> DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-Rule 7     expression -> TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-Rule 8     expression -> IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-Rule 9     expression -> S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-Rule 10    expression -> SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-Rule 11    expression -> C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-Rule 12    expression -> MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-Rule 13    expression -> FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-Rule 14    structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
-Rule 15    bloc -> NEWLINE { NEWLINE programme }
+Rule 7     expression -> P PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+Rule 8     expression -> TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+Rule 9     expression -> IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+Rule 10    expression -> S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+Rule 11    expression -> SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+Rule 12    expression -> SSS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+Rule 13    expression -> C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+Rule 14    expression -> MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+Rule 15    expression -> FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+Rule 16    structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
+Rule 17    bloc -> NEWLINE { NEWLINE programme }
 
 Terminals, with rules where they appear
 
 AUTHOR               : 5
-BL                   : 14
-C                    : 11
+BL                   : 16
+C                    : 13
 DATE                 : 6
-FILENAME             : 13
-IDENTIFIER           : 5 6 7 8 9 10 11 12 13 14
-IMG                  : 8
-MARGE                : 12
-NEWLINE              : 1 2 15 15
-PARANTHESIS_CLOSE    : 5 6 7 8 9 10 11 12 13 14
-PARANTHESIS_OPEN     : 5 6 7 8 9 10 11 12 13 14
-S                    : 9
+FILENAME             : 15
+IDENTIFIER           : 5 6 7 8 9 10 11 12 13 14 15 16
+IMG                  : 9
+MARGE                : 14
+NEWLINE              : 1 2 17 17
+P                    : 7
+PARANTHESIS_CLOSE    : 5 6 7 8 9 10 11 12 13 14 15 16
+PARANTHESIS_OPEN     : 5 6 7 8 9 10 11 12 13 14 15 16
+S                    : 10
 SEMICOLON            : 3 4
-SS                   : 10
+SS                   : 11
+SSS                  : 12
 TABLE                : 
-TITLE                : 7
+TITLE                : 8
 error                : 
-{                    : 15
-}                    : 15
+{                    : 17
+}                    : 17
 
 Nonterminals, with rules where they appear
 
-bloc                 : 14
+bloc                 : 16
 expression           : 3
-programme            : 2 15 0
+programme            : 2 17 0
 statement            : 1 2
 structure            : 4
 
@@ -64,25 +68,29 @@ state 0
     (4) statement -> . structure SEMICOLON
     (5) expression -> . AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
     (6) expression -> . DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (7) expression -> . TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (8) expression -> . IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (9) expression -> . S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (10) expression -> . SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (11) expression -> . C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (12) expression -> . MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (13) expression -> . FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (14) structure -> . BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
+    (7) expression -> . P PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (8) expression -> . TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (9) expression -> . IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (10) expression -> . S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (11) expression -> . SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (12) expression -> . SSS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (13) expression -> . C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (14) expression -> . MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (15) expression -> . FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (16) structure -> . BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
 
     AUTHOR          shift and go to state 5
     DATE            shift and go to state 6
-    TITLE           shift and go to state 7
-    IMG             shift and go to state 8
-    S               shift and go to state 9
-    SS              shift and go to state 10
-    C               shift and go to state 11
-    MARGE           shift and go to state 12
-    FILENAME        shift and go to state 13
-    BL              shift and go to state 14
+    P               shift and go to state 7
+    TITLE           shift and go to state 8
+    IMG             shift and go to state 9
+    S               shift and go to state 10
+    SS              shift and go to state 11
+    SSS             shift and go to state 12
+    C               shift and go to state 13
+    MARGE           shift and go to state 14
+    FILENAME        shift and go to state 15
+    BL              shift and go to state 16
 
     programme                      shift and go to state 1
     statement                      shift and go to state 2
@@ -100,94 +108,108 @@ state 2
     (1) programme -> statement . NEWLINE
     (2) programme -> statement . NEWLINE programme
 
-    NEWLINE         shift and go to state 15
+    NEWLINE         shift and go to state 17
 
 
 state 3
 
     (3) statement -> expression . SEMICOLON
 
-    SEMICOLON       shift and go to state 16
+    SEMICOLON       shift and go to state 18
 
 
 state 4
 
     (4) statement -> structure . SEMICOLON
 
-    SEMICOLON       shift and go to state 17
+    SEMICOLON       shift and go to state 19
 
 
 state 5
 
     (5) expression -> AUTHOR . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
 
-    PARANTHESIS_OPEN shift and go to state 18
+    PARANTHESIS_OPEN shift and go to state 20
 
 
 state 6
 
     (6) expression -> DATE . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
 
-    PARANTHESIS_OPEN shift and go to state 19
+    PARANTHESIS_OPEN shift and go to state 21
 
 
 state 7
 
-    (7) expression -> TITLE . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-
-    PARANTHESIS_OPEN shift and go to state 20
-
-
-state 8
-
-    (8) expression -> IMG . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-
-    PARANTHESIS_OPEN shift and go to state 21
-
-
-state 9
-
-    (9) expression -> S . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (7) expression -> P . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
 
     PARANTHESIS_OPEN shift and go to state 22
 
 
-state 10
+state 8
 
-    (10) expression -> SS . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (8) expression -> TITLE . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
 
     PARANTHESIS_OPEN shift and go to state 23
 
 
-state 11
+state 9
 
-    (11) expression -> C . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (9) expression -> IMG . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
 
     PARANTHESIS_OPEN shift and go to state 24
 
 
-state 12
+state 10
 
-    (12) expression -> MARGE . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (10) expression -> S . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
 
     PARANTHESIS_OPEN shift and go to state 25
 
 
-state 13
+state 11
 
-    (13) expression -> FILENAME . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (11) expression -> SS . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
 
     PARANTHESIS_OPEN shift and go to state 26
 
 
-state 14
+state 12
 
-    (14) structure -> BL . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
+    (12) expression -> SSS . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
 
     PARANTHESIS_OPEN shift and go to state 27
 
 
+state 13
+
+    (13) expression -> C . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+
+    PARANTHESIS_OPEN shift and go to state 28
+
+
+state 14
+
+    (14) expression -> MARGE . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+
+    PARANTHESIS_OPEN shift and go to state 29
+
+
 state 15
+
+    (15) expression -> FILENAME . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+
+    PARANTHESIS_OPEN shift and go to state 30
+
+
+state 16
+
+    (16) structure -> BL . PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
+
+    PARANTHESIS_OPEN shift and go to state 31
+
+
+state 17
 
     (1) programme -> statement NEWLINE .
     (2) programme -> statement NEWLINE . programme
@@ -197,118 +219,136 @@ state 15
     (4) statement -> . structure SEMICOLON
     (5) expression -> . AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
     (6) expression -> . DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (7) expression -> . TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (8) expression -> . IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (9) expression -> . S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (10) expression -> . SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (11) expression -> . C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (12) expression -> . MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (13) expression -> . FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (14) structure -> . BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
+    (7) expression -> . P PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (8) expression -> . TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (9) expression -> . IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (10) expression -> . S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (11) expression -> . SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (12) expression -> . SSS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (13) expression -> . C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (14) expression -> . MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (15) expression -> . FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (16) structure -> . BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
 
     $end            reduce using rule 1 (programme -> statement NEWLINE .)
     }               reduce using rule 1 (programme -> statement NEWLINE .)
     AUTHOR          shift and go to state 5
     DATE            shift and go to state 6
-    TITLE           shift and go to state 7
-    IMG             shift and go to state 8
-    S               shift and go to state 9
-    SS              shift and go to state 10
-    C               shift and go to state 11
-    MARGE           shift and go to state 12
-    FILENAME        shift and go to state 13
-    BL              shift and go to state 14
+    P               shift and go to state 7
+    TITLE           shift and go to state 8
+    IMG             shift and go to state 9
+    S               shift and go to state 10
+    SS              shift and go to state 11
+    SSS             shift and go to state 12
+    C               shift and go to state 13
+    MARGE           shift and go to state 14
+    FILENAME        shift and go to state 15
+    BL              shift and go to state 16
 
     statement                      shift and go to state 2
-    programme                      shift and go to state 28
+    programme                      shift and go to state 32
     expression                     shift and go to state 3
     structure                      shift and go to state 4
 
-state 16
+state 18
 
     (3) statement -> expression SEMICOLON .
 
     NEWLINE         reduce using rule 3 (statement -> expression SEMICOLON .)
 
 
-state 17
+state 19
 
     (4) statement -> structure SEMICOLON .
 
     NEWLINE         reduce using rule 4 (statement -> structure SEMICOLON .)
 
 
-state 18
-
-    (5) expression -> AUTHOR PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
-
-    IDENTIFIER      shift and go to state 29
-
-
-state 19
-
-    (6) expression -> DATE PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
-
-    IDENTIFIER      shift and go to state 30
-
-
 state 20
 
-    (7) expression -> TITLE PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
-
-    IDENTIFIER      shift and go to state 31
-
-
-state 21
-
-    (8) expression -> IMG PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
-
-    IDENTIFIER      shift and go to state 32
-
-
-state 22
-
-    (9) expression -> S PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
+    (5) expression -> AUTHOR PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
 
     IDENTIFIER      shift and go to state 33
 
 
-state 23
+state 21
 
-    (10) expression -> SS PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
+    (6) expression -> DATE PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
 
     IDENTIFIER      shift and go to state 34
 
 
-state 24
+state 22
 
-    (11) expression -> C PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
+    (7) expression -> P PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
 
     IDENTIFIER      shift and go to state 35
 
 
-state 25
+state 23
 
-    (12) expression -> MARGE PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
+    (8) expression -> TITLE PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
 
     IDENTIFIER      shift and go to state 36
 
 
-state 26
+state 24
 
-    (13) expression -> FILENAME PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
+    (9) expression -> IMG PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
 
     IDENTIFIER      shift and go to state 37
 
 
-state 27
+state 25
 
-    (14) structure -> BL PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE bloc
+    (10) expression -> S PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
 
     IDENTIFIER      shift and go to state 38
 
 
+state 26
+
+    (11) expression -> SS PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
+
+    IDENTIFIER      shift and go to state 39
+
+
+state 27
+
+    (12) expression -> SSS PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
+
+    IDENTIFIER      shift and go to state 40
+
+
 state 28
+
+    (13) expression -> C PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
+
+    IDENTIFIER      shift and go to state 41
+
+
+state 29
+
+    (14) expression -> MARGE PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
+
+    IDENTIFIER      shift and go to state 42
+
+
+state 30
+
+    (15) expression -> FILENAME PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE
+
+    IDENTIFIER      shift and go to state 43
+
+
+state 31
+
+    (16) structure -> BL PARANTHESIS_OPEN . IDENTIFIER PARANTHESIS_CLOSE bloc
+
+    IDENTIFIER      shift and go to state 44
+
+
+state 32
 
     (2) programme -> statement NEWLINE programme .
 
@@ -316,213 +356,245 @@ state 28
     }               reduce using rule 2 (programme -> statement NEWLINE programme .)
 
 
-state 29
-
-    (5) expression -> AUTHOR PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
-
-    PARANTHESIS_CLOSE shift and go to state 39
-
-
-state 30
-
-    (6) expression -> DATE PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
-
-    PARANTHESIS_CLOSE shift and go to state 40
-
-
-state 31
-
-    (7) expression -> TITLE PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
-
-    PARANTHESIS_CLOSE shift and go to state 41
-
-
-state 32
-
-    (8) expression -> IMG PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
-
-    PARANTHESIS_CLOSE shift and go to state 42
-
-
 state 33
 
-    (9) expression -> S PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
-
-    PARANTHESIS_CLOSE shift and go to state 43
-
-
-state 34
-
-    (10) expression -> SS PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
-
-    PARANTHESIS_CLOSE shift and go to state 44
-
-
-state 35
-
-    (11) expression -> C PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
+    (5) expression -> AUTHOR PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
 
     PARANTHESIS_CLOSE shift and go to state 45
 
 
-state 36
+state 34
 
-    (12) expression -> MARGE PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
+    (6) expression -> DATE PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
 
     PARANTHESIS_CLOSE shift and go to state 46
 
 
-state 37
+state 35
 
-    (13) expression -> FILENAME PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
+    (7) expression -> P PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
 
     PARANTHESIS_CLOSE shift and go to state 47
 
 
-state 38
+state 36
 
-    (14) structure -> BL PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE bloc
+    (8) expression -> TITLE PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
 
     PARANTHESIS_CLOSE shift and go to state 48
 
 
+state 37
+
+    (9) expression -> IMG PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
+
+    PARANTHESIS_CLOSE shift and go to state 49
+
+
+state 38
+
+    (10) expression -> S PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
+
+    PARANTHESIS_CLOSE shift and go to state 50
+
+
 state 39
+
+    (11) expression -> SS PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
+
+    PARANTHESIS_CLOSE shift and go to state 51
+
+
+state 40
+
+    (12) expression -> SSS PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
+
+    PARANTHESIS_CLOSE shift and go to state 52
+
+
+state 41
+
+    (13) expression -> C PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
+
+    PARANTHESIS_CLOSE shift and go to state 53
+
+
+state 42
+
+    (14) expression -> MARGE PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
+
+    PARANTHESIS_CLOSE shift and go to state 54
+
+
+state 43
+
+    (15) expression -> FILENAME PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE
+
+    PARANTHESIS_CLOSE shift and go to state 55
+
+
+state 44
+
+    (16) structure -> BL PARANTHESIS_OPEN IDENTIFIER . PARANTHESIS_CLOSE bloc
+
+    PARANTHESIS_CLOSE shift and go to state 56
+
+
+state 45
 
     (5) expression -> AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
 
     SEMICOLON       reduce using rule 5 (expression -> AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
 
 
-state 40
+state 46
 
     (6) expression -> DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
 
     SEMICOLON       reduce using rule 6 (expression -> DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
 
 
-state 41
-
-    (7) expression -> TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
-
-    SEMICOLON       reduce using rule 7 (expression -> TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
-
-
-state 42
-
-    (8) expression -> IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
-
-    SEMICOLON       reduce using rule 8 (expression -> IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
-
-
-state 43
-
-    (9) expression -> S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
-
-    SEMICOLON       reduce using rule 9 (expression -> S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
-
-
-state 44
-
-    (10) expression -> SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
-
-    SEMICOLON       reduce using rule 10 (expression -> SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
-
-
-state 45
-
-    (11) expression -> C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
-
-    SEMICOLON       reduce using rule 11 (expression -> C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
-
-
-state 46
-
-    (12) expression -> MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
-
-    SEMICOLON       reduce using rule 12 (expression -> MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
-
-
 state 47
 
-    (13) expression -> FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
+    (7) expression -> P PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
 
-    SEMICOLON       reduce using rule 13 (expression -> FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
+    SEMICOLON       reduce using rule 7 (expression -> P PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
 
 
 state 48
 
-    (14) structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE . bloc
-    (15) bloc -> . NEWLINE { NEWLINE programme }
+    (8) expression -> TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
 
-    NEWLINE         shift and go to state 50
+    SEMICOLON       reduce using rule 8 (expression -> TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
 
-    bloc                           shift and go to state 49
 
 state 49
 
-    (14) structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc .
+    (9) expression -> IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
 
-    SEMICOLON       reduce using rule 14 (structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc .)
+    SEMICOLON       reduce using rule 9 (expression -> IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
 
 
 state 50
 
-    (15) bloc -> NEWLINE . { NEWLINE programme }
+    (10) expression -> S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
 
-    {               shift and go to state 51
+    SEMICOLON       reduce using rule 10 (expression -> S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
 
 
 state 51
 
-    (15) bloc -> NEWLINE { . NEWLINE programme }
+    (11) expression -> SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
 
-    NEWLINE         shift and go to state 52
+    SEMICOLON       reduce using rule 11 (expression -> SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
 
 
 state 52
 
-    (15) bloc -> NEWLINE { NEWLINE . programme }
+    (12) expression -> SSS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
+
+    SEMICOLON       reduce using rule 12 (expression -> SSS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
+
+
+state 53
+
+    (13) expression -> C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
+
+    SEMICOLON       reduce using rule 13 (expression -> C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
+
+
+state 54
+
+    (14) expression -> MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
+
+    SEMICOLON       reduce using rule 14 (expression -> MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
+
+
+state 55
+
+    (15) expression -> FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .
+
+    SEMICOLON       reduce using rule 15 (expression -> FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE .)
+
+
+state 56
+
+    (16) structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE . bloc
+    (17) bloc -> . NEWLINE { NEWLINE programme }
+
+    NEWLINE         shift and go to state 58
+
+    bloc                           shift and go to state 57
+
+state 57
+
+    (16) structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc .
+
+    SEMICOLON       reduce using rule 16 (structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc .)
+
+
+state 58
+
+    (17) bloc -> NEWLINE . { NEWLINE programme }
+
+    {               shift and go to state 59
+
+
+state 59
+
+    (17) bloc -> NEWLINE { . NEWLINE programme }
+
+    NEWLINE         shift and go to state 60
+
+
+state 60
+
+    (17) bloc -> NEWLINE { NEWLINE . programme }
     (1) programme -> . statement NEWLINE
     (2) programme -> . statement NEWLINE programme
     (3) statement -> . expression SEMICOLON
     (4) statement -> . structure SEMICOLON
     (5) expression -> . AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
     (6) expression -> . DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (7) expression -> . TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (8) expression -> . IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (9) expression -> . S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (10) expression -> . SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (11) expression -> . C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (12) expression -> . MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (13) expression -> . FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
-    (14) structure -> . BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
+    (7) expression -> . P PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (8) expression -> . TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (9) expression -> . IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (10) expression -> . S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (11) expression -> . SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (12) expression -> . SSS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (13) expression -> . C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (14) expression -> . MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (15) expression -> . FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+    (16) structure -> . BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc
 
     AUTHOR          shift and go to state 5
     DATE            shift and go to state 6
-    TITLE           shift and go to state 7
-    IMG             shift and go to state 8
-    S               shift and go to state 9
-    SS              shift and go to state 10
-    C               shift and go to state 11
-    MARGE           shift and go to state 12
-    FILENAME        shift and go to state 13
-    BL              shift and go to state 14
+    P               shift and go to state 7
+    TITLE           shift and go to state 8
+    IMG             shift and go to state 9
+    S               shift and go to state 10
+    SS              shift and go to state 11
+    SSS             shift and go to state 12
+    C               shift and go to state 13
+    MARGE           shift and go to state 14
+    FILENAME        shift and go to state 15
+    BL              shift and go to state 16
 
-    programme                      shift and go to state 53
+    programme                      shift and go to state 61
     statement                      shift and go to state 2
     expression                     shift and go to state 3
     structure                      shift and go to state 4
 
-state 53
+state 61
 
-    (15) bloc -> NEWLINE { NEWLINE programme . }
+    (17) bloc -> NEWLINE { NEWLINE programme . }
 
-    }               shift and go to state 54
+    }               shift and go to state 62
 
 
-state 54
+state 62
 
-    (15) bloc -> NEWLINE { NEWLINE programme } .
+    (17) bloc -> NEWLINE { NEWLINE programme } .
 
-    SEMICOLON       reduce using rule 15 (bloc -> NEWLINE { NEWLINE programme } .)
+    SEMICOLON       reduce using rule 17 (bloc -> NEWLINE { NEWLINE programme } .)
 
