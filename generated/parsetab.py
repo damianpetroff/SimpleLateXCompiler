@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = "AUTHOR BL C DATE FILENAME IDENTIFIER IMG MARGE NEWLINE PARANTHESIS_CLOSE PARANTHESIS_OPEN S SEMICOLON SS TABLE TITLE programme : statement NEWLINE programme : statement NEWLINE programme  statement : expression SEMICOLON\n        | structure SEMICOLON  expression : AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  structure : BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc  bloc : NEWLINE '{' NEWLINE programme '}' "
+_lr_signature = "AUTHOR BL C DATE FILENAME IDENTIFIER IMG MARGE NEWLINE P PARANTHESIS_CLOSE PARANTHESIS_OPEN S SEMICOLON SS TABLE TITLE programme : statement NEWLINE programme : statement NEWLINE programme  statement : expression SEMICOLON\n        | structure SEMICOLON  expression : AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : P PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  expression : FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE  structure : BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc  structure : TABLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc  bloc : NEWLINE '{' NEWLINE programme '}' "
     
-_lr_action_items = {'AUTHOR':([0,15,52,],[5,5,5,]),'DATE':([0,15,52,],[6,6,6,]),'TITLE':([0,15,52,],[7,7,7,]),'IMG':([0,15,52,],[8,8,8,]),'S':([0,15,52,],[9,9,9,]),'SS':([0,15,52,],[10,10,10,]),'C':([0,15,52,],[11,11,11,]),'MARGE':([0,15,52,],[12,12,12,]),'FILENAME':([0,15,52,],[13,13,13,]),'BL':([0,15,52,],[14,14,14,]),'$end':([1,15,28,],[0,-1,-2,]),'NEWLINE':([2,16,17,48,51,],[15,-3,-4,50,52,]),'SEMICOLON':([3,4,39,40,41,42,43,44,45,46,47,49,54,],[16,17,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,]),'PARANTHESIS_OPEN':([5,6,7,8,9,10,11,12,13,14,],[18,19,20,21,22,23,24,25,26,27,]),'}':([15,28,53,],[-1,-2,54,]),'IDENTIFIER':([18,19,20,21,22,23,24,25,26,27,],[29,30,31,32,33,34,35,36,37,38,]),'PARANTHESIS_CLOSE':([29,30,31,32,33,34,35,36,37,38,],[39,40,41,42,43,44,45,46,47,48,]),'{':([50,],[51,]),}
+_lr_action_items = {'AUTHOR':([0,17,61,],[5,5,5,]),'DATE':([0,17,61,],[6,6,6,]),'P':([0,17,61,],[7,7,7,]),'TITLE':([0,17,61,],[8,8,8,]),'IMG':([0,17,61,],[9,9,9,]),'S':([0,17,61,],[10,10,10,]),'SS':([0,17,61,],[11,11,11,]),'C':([0,17,61,],[12,12,12,]),'MARGE':([0,17,61,],[13,13,13,]),'FILENAME':([0,17,61,],[14,14,14,]),'BL':([0,17,61,],[15,15,15,]),'TABLE':([0,17,61,],[16,16,16,]),'$end':([1,17,32,],[0,-1,-2,]),'NEWLINE':([2,18,19,55,56,60,],[17,-3,-4,58,58,61,]),'SEMICOLON':([3,4,45,46,47,48,49,50,51,52,53,54,57,59,63,],[18,19,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,]),'PARANTHESIS_OPEN':([5,6,7,8,9,10,11,12,13,14,15,16,],[20,21,22,23,24,25,26,27,28,29,30,31,]),'}':([17,32,62,],[-1,-2,63,]),'IDENTIFIER':([20,21,22,23,24,25,26,27,28,29,30,31,],[33,34,35,36,37,38,39,40,41,42,43,44,]),'PARANTHESIS_CLOSE':([33,34,35,36,37,38,39,40,41,42,43,44,],[45,46,47,48,49,50,51,52,53,54,55,56,]),'{':([58,],[60,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programme':([0,15,52,],[1,28,53,]),'statement':([0,15,52,],[2,2,2,]),'expression':([0,15,52,],[3,3,3,]),'structure':([0,15,52,],[4,4,4,]),'bloc':([48,],[49,]),}
+_lr_goto_items = {'programme':([0,17,61,],[1,32,62,]),'statement':([0,17,61,],[2,2,2,]),'expression':([0,17,61,],[3,3,3,]),'structure':([0,17,61,],[4,4,4,]),'bloc':([55,56,],[57,59,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -33,13 +33,15 @@ _lr_productions = [
   ('statement -> structure SEMICOLON','statement',2,'p_statement','parser5.py',18),
   ('expression -> AUTHOR PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_author','parser5.py',22),
   ('expression -> DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_date','parser5.py',26),
-  ('expression -> TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_title','parser5.py',30),
-  ('expression -> IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_image','parser5.py',34),
-  ('expression -> S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_section','parser5.py',38),
-  ('expression -> SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_subsection','parser5.py',42),
-  ('expression -> C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_chapter','parser5.py',46),
-  ('expression -> MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_marge','parser5.py',50),
-  ('expression -> FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_filename','parser5.py',54),
-  ('structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc','structure',5,'p_structure_bl','parser5.py',58),
-  ('bloc -> NEWLINE { NEWLINE programme }','bloc',5,'p_bloc','parser5.py',62),
+  ('expression -> P PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_paragraph','parser5.py',30),
+  ('expression -> TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_title','parser5.py',34),
+  ('expression -> IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_image','parser5.py',38),
+  ('expression -> S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_section','parser5.py',42),
+  ('expression -> SS PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_subsection','parser5.py',46),
+  ('expression -> C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_chapter','parser5.py',50),
+  ('expression -> MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_marge','parser5.py',54),
+  ('expression -> FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE','expression',4,'p_expression_filename','parser5.py',58),
+  ('structure -> BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc','structure',5,'p_structure_bl','parser5.py',62),
+  ('structure -> TABLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc','structure',5,'p_structure_table','parser5.py',66),
+  ('bloc -> NEWLINE { NEWLINE programme }','bloc',5,'p_bloc','parser5.py',70),
 ]

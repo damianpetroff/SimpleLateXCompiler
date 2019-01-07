@@ -26,9 +26,9 @@ def p_expression_date(p):
     ''' expression : DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
     p[0] = AST.DateNode(p[3])
 
-def p_expression_paragrpahe(p):
+def p_expression_paragraph(p):
     ''' expression : P PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
-    p[0] = AST.ParagrapheNode(p[3])
+    p[0] = AST.ParagraphNode(p[3])
 
 def p_expression_title(p):
     ''' expression : TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
@@ -61,6 +61,10 @@ def p_expression_filename(p):
 def p_structure_bl(p):
     ''' structure : BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc '''
     p[0] = AST.BulletListNode([p[3],p[5]])
+
+def p_structure_table(p):
+    ''' structure : TABLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc '''
+    p[0] = AST.TableNode([p[3],p[5]])
 
 def p_bloc(p):
     ''' bloc : NEWLINE '{' NEWLINE programme '}' '''

@@ -6,5 +6,10 @@ s(test);
 
 bl(number)
 {
-p(test)
+p(test);
+};
+
+table(5)
+{
+p(hello);
 };
