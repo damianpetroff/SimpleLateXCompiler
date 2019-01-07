@@ -26,6 +26,10 @@ def p_expression_date(p):
     ''' expression : DATE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
     p[0] = AST.DateNode(p[3])
 
+def p_expression_paragrpahe(p):
+    ''' expression : P PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.ParagrapheNode(p[3])
+
 def p_expression_title(p):
     ''' expression : TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
     p[0] = AST.TitleNode(p[3])

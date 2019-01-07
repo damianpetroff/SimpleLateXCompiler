@@ -201,7 +201,7 @@ class BulletListNode(Node):
         Node.__init__(self)
         self.tok = tok
     def __repr__(self):
-        return repr('Bulletlist: '+self.tok.__repr__)
+        return repr('Bulletlist: '+self.tok.__repr__())
 
 class BlocNode(Node):
     type = 'bloc'
@@ -209,9 +209,11 @@ class BlocNode(Node):
         Node.__init__(self)
         self.tok = tok
     def __repr__(self):
-        tokens = self.tok
-        print(tokens)
-        return repr('Bloc: '+tokens)
+        tokens = self.tok.children
+        t = 'Bloc :'
+        for tok in tokens:
+            t += tok.__repr__()
+        return t
 
     #def execute(self):
     #    while self.children[0].execute():
