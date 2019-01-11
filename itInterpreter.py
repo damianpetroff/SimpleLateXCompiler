@@ -9,6 +9,7 @@ titlePageVars = {
 'Title' : 'Title of the document',
 'Author': '',
 'Date'  : '\\today',
+'FileName' : 'PerfectDocument'
 }
 
 boolVars = {
@@ -35,7 +36,11 @@ def execute(node):
 	body = ""
 	body += '\\tableofcontents\n'
 	while node:
-		if node.__class__ == AST.AuthorNode:
+		if node.__class__ == AST.FileNameNode:
+			val = node.tok
+			boolVars['FileName'] = True
+			titlePageVars['FileName'] = str(val)
+		elif node.__class__ == AST.AuthorNode:
 			val = node.tok
 			boolVars['Author'] = True
 			titlePageVars['Author'] = str(val)
@@ -119,9 +124,14 @@ if __name__ == "__main__":
 	ast = parse(prog)
 	entry = thread(ast)
 	body = execute(entry)
+
+	print("----------",titlePageVars['Marge'])
 	stringOutput = '\\documentclass[a4paper,10pt,openany,oneside]{report}\n'
-	if boolVars['Marge'] and titlePageVars['Marge'] == 'auto':
+	if titlePageVars['Marge'] == 'auto':
 		stringOutput += '\\usepackage[left=2cm,right=2cm,top=2cm,includefoot]{geometry}\n'
+	else:
+		marge=titlePageVars['Marge']
+		stringOutput += '\\usepackage[left='+marge+'cm,right='+marge+'cm,top='+marge+'cm,includefoot]{geometry}\n'
 	stringOutput += '\\usepackage{graphicx}\n'
 	stringOutput += '\\usepackage{tabularx}\n'
 	stringOutput += '\\begin{document}\n'
@@ -140,7 +150,7 @@ if __name__ == "__main__":
 	stringOutput += '\\end{center}\n'
 	stringOutput += body
 	stringOutput += "\\end{document}\n"
-	filename = 'PerfectDocument'
+	filename = titlePageVars['FileName']
 	generate_pdf(filename, stringOutput)
 
 	# commande :

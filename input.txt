@@ -1,5 +1,5 @@
-filename(exemple.tex);
-marge(auto);
+filename(PerfectDocument);
+marge(6);
 img(img/example.png);
 title(SimpleLateXCompiler);
 author(Quentin Michel, Damian Petroff);
@@ -7,4 +7,5 @@ date(today);
 c(test chapitre);
 s(test section);
 ss(test subsection);
-p(abc);
+p(The socks of the archiduchesse are dry archidry
+dwada);
