@@ -70,6 +70,9 @@ def execute(node):
 		elif node.__class__ == AST.SubSubSectionNode:
 			val = node.tok
 			body += '\\subsubsection{'+val+'}\n'
+		elif node.__class__ == AST.ParagraphNode:
+			val = node.tok
+			body += '\\paragraph{}\n'+val+'\n'
 		elif node.__class__ in [AST.EntryNode, AST.ProgramNode]:
 			pass
 		elif node.__class__ == AST.TokenNode:

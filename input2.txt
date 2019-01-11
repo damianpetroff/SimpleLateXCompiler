@@ -4,9 +4,12 @@ s(porte);
 s(test);
 };
 
+
 bl(number)
 {
 p(test);
+p(test1);
+p(test2);
 };
 
 table(5)

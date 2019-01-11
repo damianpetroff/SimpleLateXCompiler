@@ -37,6 +37,13 @@ def thread(self, lastNode):
     lastNode.addNext(self)
     return self
 
+@addToClass(AST.ChapterNode)
+def thread(self, lastNode):
+    for c in self.children:
+        lastNode = c.thread(lastNode)
+    lastNode.addNext(self)
+    return self
+
 @addToClass(AST.SectionNode)
 def thread(self, lastNode):
     for c in self.children:
@@ -51,12 +58,14 @@ def thread(self, lastNode):
     lastNode.addNext(self)
     return self
 
-@addToClass(AST.ChapterNode)
+@addToClass(AST.SubSubSectionNode)
 def thread(self, lastNode):
     for c in self.children:
         lastNode = c.thread(lastNode)
     lastNode.addNext(self)
     return self
+
+
 
 @addToClass(AST.MargeNode)
 def thread(self, lastNode):
@@ -66,6 +75,13 @@ def thread(self, lastNode):
     return self
 
 @addToClass(AST.FileNameNode)
+def thread(self, lastNode):
+    for c in self.children:
+        lastNode = c.thread(lastNode)
+    lastNode.addNext(self)
+    return self
+
+@addToClass(AST.ParagraphNode)
 def thread(self, lastNode):
     for c in self.children:
         lastNode = c.thread(lastNode)
