@@ -11,5 +11,5 @@ p(test);
 
 table(5)
 {
-p(hello);
+p(#);
 };

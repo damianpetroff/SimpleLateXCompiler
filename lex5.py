@@ -21,6 +21,7 @@ tokens = (
     'PARANTHESIS_CLOSE',
 	'IDENTIFIER',
 	'NEWLINE',
+	'EMPTY',
 	'SEMICOLON'
 ) + tuple(map(lambda s:s.upper(),reserved_words))
 
@@ -35,6 +36,10 @@ def t_IDENTIFIER(t):
 def t_NEWLINE(t):
 	r'\n+'
 	t.lexer.lineno += len(t.value)
+	return t
+
+def t_EMPTY(t):
+	r'\#'
 	return t
 
 def t_PARANTHESIS_OPEN(t):
