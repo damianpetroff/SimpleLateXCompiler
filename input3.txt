@@ -1,0 +1,6 @@
+bl(number)
+{
+p(un);
+p(deux);
+p(trois);
+};

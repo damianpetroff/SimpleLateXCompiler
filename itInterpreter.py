@@ -105,6 +105,11 @@ def execute(node):
 		elif node.__class__ == AST.ParagraphNode:
 			val = node.tok
 			body += '\\paragraph{}\n'+val+'\n'
+		elif node.__class__ == AST.BulletListNode:
+			val = node.tok
+			#print(val[1])
+			for v in val[1].tok.children:
+				print(v.tok)
 		elif node.__class__ in [AST.EntryNode, AST.ProgramNode]:
 			pass
 		elif node.__class__ == AST.TokenNode:
