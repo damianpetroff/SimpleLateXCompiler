@@ -27,7 +27,8 @@ def p_expression_date(p):
     p[0] = AST.DateNode(p[3])
 
 def p_expression_paragraph(p):
-    ''' expression : P PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    ''' expression : P PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE
+        | P  PARANTHESIS_OPEN EMPTY PARANTHESIS_CLOSE '''
     p[0] = AST.ParagraphNode(p[3])
 
 def p_expression_title(p):
