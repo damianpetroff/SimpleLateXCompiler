@@ -1,13 +1,21 @@
 \documentclass[a4paper,10pt,openany,oneside]{report}
-\usepackage[left=6cm,right=6cm,top=6cm,includefoot]{geometry}
+
+% - PACKAGES -
+\usepackage[left=2cm,right=2cm,top=2cm,includefoot]{geometry}
+\usepackage[english]{babel}
 \usepackage{graphicx}
 \usepackage{tabularx}
+
+% - DOCUMENT -
 \begin{document}
 \pagenumbering{gobble}
+
+% - FRONT PAGE -
+\thispagestyle{empty}
 \begin{figure}
-\centering
-\vspace*{1cm}
-\includegraphics[width=0.6\textwidth]{img/example.png}
+	\centering
+	\vspace*{1cm}
+	\includegraphics[width=0.6\textwidth]{img/example.png}
 \end{figure}
 \vspace*{3cm}
 \begin{center}
@@ -15,11 +23,102 @@
 {\Large Quentin Michel, Damian Petroff} \\[5cm]
 \today
 \end{center}
+
+% - ABSTRACT -
+\chapter*{Abstract}
+\paragraph{}Ceci est un abstract super sympa
+\pagebreak
+
+% - TABLE OF CONTENTS -
 \tableofcontents
-\chapter{test chapitre}
-\section{test section}
-\subsection{test subsection}
+\pagebreak
+\setcounter{page}{0}
+
+% - BODY -
+
+\chapter{Les premier chapitre de ce fabuleux document}
+
+\section{Disons des trucs}
 \paragraph{}
-The socks of the archiduchesse are dry archidry
-dwada
+Voici un petit bout de texte qui decrit la section
+
+\subsection{Disons des trucs}
+\paragraph{}
+Voici un petit bout de texte qui decrit la soussection
+
+\subsubsection{Informations tres precises}
+\paragraph{}
+Ici on peut donner des informations tres importantes sur un sujet particulier On essaie detre le plus exhaustive possible dans cette soussoussection afin daaugmenter la taille de ce paragraphe
+
+\chapter{Les premier chapitre de ce fabuleux document}
+
+\section{Disons des trucs}
+\paragraph{}
+Voici un petit bout de texte qui decrit la section
+
+\subsection{Disons des trucs}
+\paragraph{}
+Voici un petit bout de texte qui decrit la soussection
+
+\subsubsection{Informations tres precises}
+\paragraph{}
+Ici on peut donner des informations tres importantes sur un sujet particulier On essaie detre le plus exhaustive possible dans cette soussoussection afin daaugmenter la taille de ce paragraphe
+
+\chapter{Les premier chapitre de ce fabuleux document}
+
+\section{Disons des trucs}
+\paragraph{}
+Voici un petit bout de texte qui decrit la section
+
+\subsection{Disons des trucs}
+\paragraph{}
+Voici un petit bout de texte qui decrit la soussection
+
+\subsubsection{Informations tres precises}
+\paragraph{}
+Ici on peut donner des informations tres importantes sur un sujet particulier On essaie detre le plus exhaustive possible dans cette soussoussection afin daaugmenter la taille de ce paragraphe
+
+\chapter{Les premier chapitre de ce fabuleux document}
+
+\section{Disons des trucs}
+\paragraph{}
+Voici un petit bout de texte qui decrit la section
+
+\subsection{Disons des trucs}
+\paragraph{}
+Voici un petit bout de texte qui decrit la soussection
+
+\subsubsection{Informations tres precises}
+\paragraph{}
+Ici on peut donner des informations tres importantes sur un sujet particulier On essaie detre le plus exhaustive possible dans cette soussoussection afin daaugmenter la taille de ce paragraphe
+
+%image : img/img1.jpg
+\begin{figure}[ht]
+	\centering
+	\vspace*{1cm}
+	\includegraphics[width=0.7\textwidth]{img/img1.jpg}
+	\caption{\label{}img1}
+\end{figure}
+
+%image : img/img2.jpg
+\begin{figure}[ht]
+	\centering
+	\vspace*{1cm}
+	\includegraphics[width=0.7\textwidth]{img/img2.jpg}
+	\caption{\label{}img2}
+\end{figure}
+
+\chapter{2eme chapitre}
+
+\section{test section}
+
+\subsection{test subsection}
+
+%image : img/img3.jpg
+\begin{figure}[ht]
+	\centering
+	\vspace*{1cm}
+	\includegraphics[width=0.7\textwidth]{img/img3.jpg}
+	\caption{\label{}img3}
+\end{figure}
 \end{document}

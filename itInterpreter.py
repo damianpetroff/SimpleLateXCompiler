@@ -5,18 +5,25 @@ stack = []
 vars = {}
 
 titlePageVars = {
-'Img'   : '',
-'Title' : 'Title of the document',
-'Author': '',
-'Date'  : '\\today',
-'FileName' : 'PerfectDocument'
+'frontpageimg' : '',
+'abstract' : '',
+'language' : 'english',
+'title' : 'Title of the document',
+'author': 'by its authors',
+'date'  : '\\today',
+'margin' : 'auto',
+'fileName' : 'PerfectDocument',
 }
 
 boolVars = {
-'Img':False,
-'Title':False,
-'Author':False,
-'Date':False,
+'abstract' : False,
+'frontpageimg':False,
+'language':False,
+'numbering':False,
+'title':False,
+'author':False,
+'date':False,
+'toc':False,
 }
 
 
@@ -32,49 +39,69 @@ def valueOfToken(t):
 
 def execute(node):
 	global titlePageVars
+	global miscVars
 	global boolVars
 	body = ""
-	body += '\\tableofcontents\n'
 	while node:
 		if node.__class__ == AST.FileNameNode:
 			val = node.tok
-			boolVars['FileName'] = True
-			titlePageVars['FileName'] = str(val)
+			boolVars['fileName'] = True
+			titlePageVars['fileName'] = str(val)
 		elif node.__class__ == AST.AuthorNode:
 			val = node.tok
-			boolVars['Author'] = True
-			titlePageVars['Author'] = str(val)
+			boolVars['author'] = True
+			titlePageVars['author'] = str(val)
+		elif node.__class__ == AST.LanguageNode:
+			val = node.tok
+			boolVars['language'] = True
+			titlePageVars['language'] = str(val)
+		elif node.__class__ == AST.FrontPageImageNode:
+			val = node.tok
+			boolVars['frontpageimg'] = True
+			titlePageVars['frontpageimg'] = str(val)
 		elif node.__class__ == AST.ImageNode:
 			val = node.tok
-			boolVars['Img'] = True
-			titlePageVars['Img'] = str(val)
+			body += '\n%image : '+val+'\n\\begin{figure}[ht]\n'
+			body += '\t\\centering\n'
+			body += '\t\\vspace*{1cm}\n'
+			body += '\t\\includegraphics[width=0.7\\textwidth]{'+val+'}\n'
+			body += '\t\\caption{\label{}'+(val.split('/')[-1]).split('.')[0]+'}\n'
+			body += '\\end{figure}\n'
 		elif node.__class__ == AST.TitleNode:
 			val = node.tok
-			boolVars['Title'] = True
-			titlePageVars['Title'] = str(val)
+			boolVars['title'] = True
+			titlePageVars['title'] = str(val)
+		elif node.__class__ == AST.NumberingNode:
+			boolVars['numbering'] = (not boolVars['numbering'])
 		elif node.__class__ == AST.DateNode:
 			val = node.tok
-			boolVars['Date'] = True
+			boolVars['date'] = True
 			if val == 'today':
-				titlePageVars['Date'] = '\\today'
+				titlePageVars['date'] = '\\today'
 			else:
-				titlePageVars['Date'] = str(val)
-		elif node.__class__ == AST.MargeNode:
+				titlePageVars['date'] = str(val)
+		elif node.__class__ == AST.MarginNode:
 			val = node.tok
-			boolVars['Marge'] = True
-			titlePageVars['Marge'] = str(val)
+			boolVars['margin'] = True
+			titlePageVars['margin'] = str(val)
+		elif node.__class__ == AST.AbstractNode:
+			val = node.tok
+			boolVars['abstract'] = True
+			titlePageVars['abstract'] = str(val)
+		elif node.__class__ == AST.TocNode:
+			boolVars['toc'] = True
 		elif node.__class__ == AST.ChapterNode:
 			val = node.tok
-			body += '\\chapter{'+val+'}\n'
+			body += '\n\\chapter'+('' if boolVars['numbering'] else '*')+'{'+val+'}\n'
 		elif node.__class__ == AST.SectionNode:
 			val = node.tok
-			body += '\\section{'+val+'}\n'
+			body += '\n\\section'+('' if boolVars['numbering'] else '*')+'{'+val+'}\n'
 		elif node.__class__ == AST.SubSectionNode:
 			val = node.tok
-			body += '\\subsection{'+val+'}\n'
+			body += '\n\\subsection'+('' if boolVars['numbering'] else '*')+'{'+val+'}\n'
 		elif node.__class__ == AST.SubSubSectionNode:
 			val = node.tok
-			body += '\\subsubsection{'+val+'}\n'
+			body += '\n\\subsubsection'+('' if boolVars['numbering'] else '*')+'{'+val+'}\n'
 		elif node.__class__ == AST.ParagraphNode:
 			val = node.tok
 			body += '\\paragraph{}\n'+val+'\n'
@@ -109,11 +136,23 @@ def generate_pdf(filename,stringOutput):
 	f.close()
 	rootDir = os.getcwd()
 	os.chdir(outputPath)
+	try:
+		os.remove(filename+'.log')
+		os.remove(filename+'.aux')
+		os.remove(filename+'.toc')
+	except FileNotFoundError:
+		pass
+	# LateX Compilation is done twice in order to avoid the "Table of contents not displaying itself" bug.
+	# https://stackoverflow.com/questions/3863630/latex-tableofcontents-command-always-shows-blank-contents-on-first-build
+	# As this script will not neceserally be launched from a linux distribution. We can't call "rubber" command here which seems to fix this problem
+	os.system('pdflatex -interaction=nonstopmode -file-line-error --shell-escape -halt-on-error'+' '+filePath)
 	os.system('pdflatex -interaction=nonstopmode -file-line-error --shell-escape -halt-on-error'+' '+filePath)
 	try:
 		os.remove(filename+'.aux')
+		os.remove(filename+'.log')
+		os.remove(filename+'.toc')
 	except FileNotFoundError:
-		print(filename+'.aux not found')
+		pass
 	os.chdir(rootDir)
 
 if __name__ == "__main__":
@@ -125,32 +164,50 @@ if __name__ == "__main__":
 	entry = thread(ast)
 	body = execute(entry)
 
-	print("----------",titlePageVars['Marge'])
 	stringOutput = '\\documentclass[a4paper,10pt,openany,oneside]{report}\n'
-	if titlePageVars['Marge'] == 'auto':
+	stringOutput += '\n% - PACKAGES -\n'
+	if titlePageVars['margin'] == 'auto':
 		stringOutput += '\\usepackage[left=2cm,right=2cm,top=2cm,includefoot]{geometry}\n'
 	else:
-		marge=titlePageVars['Marge']
-		stringOutput += '\\usepackage[left='+marge+'cm,right='+marge+'cm,top='+marge+'cm,includefoot]{geometry}\n'
+		margin=titlePageVars['margin']
+		stringOutput += '\\usepackage[left='+margin+'cm,right='+margin+'cm,top='+margin+'cm,includefoot]{geometry}\n'
+	if boolVars['language']:
+		stringOutput += '\\usepackage['+titlePageVars['language']+']{babel}\n'
 	stringOutput += '\\usepackage{graphicx}\n'
 	stringOutput += '\\usepackage{tabularx}\n'
+	stringOutput += '\n% - DOCUMENT -\n'
 	stringOutput += '\\begin{document}\n'
 	stringOutput += '\\pagenumbering{gobble}\n'
-	if boolVars['Img']:
+	stringOutput += '\n% - FRONT PAGE -\n'
+	stringOutput += '\\thispagestyle{empty}\n'
+	if boolVars['frontpageimg']:
 		stringOutput += '\\begin{figure}\n'
-		stringOutput += '\\centering\n'
-		stringOutput += '\\vspace*{1cm}\n'
-		stringOutput += '\\includegraphics[width=0.6\\textwidth]{'+titlePageVars['Img']+'}\n'
+		stringOutput += '\t\\centering\n'
+		stringOutput += '\t\\vspace*{1cm}\n'
+		stringOutput += '\t\\includegraphics[width=0.6\\textwidth]{'+titlePageVars['frontpageimg']+'}\n'
 		stringOutput += '\\end{figure}\n'
 	stringOutput += '\\vspace*{3cm}\n'
 	stringOutput += '\\begin{center}\n'
-	stringOutput += '\\textbf{\\Huge{'+titlePageVars['Title']+'}} \\\\[1cm]\n'
-	stringOutput += '{\\Large '+titlePageVars['Author']+'} \\\\[5cm]\n'
-	stringOutput += titlePageVars['Date']+'\n'
+	stringOutput += '\\textbf{\\Huge{'+titlePageVars['title']+'}} \\\\[1cm]\n'
+	stringOutput += '{\\Large '+titlePageVars['author']+'} \\\\[5cm]\n'
+	stringOutput += titlePageVars['date']+'\n'
 	stringOutput += '\\end{center}\n'
+	if boolVars['abstract']:
+		stringOutput += '\n% - ABSTRACT -\n'
+		stringOutput += '\\chapter*{Abstract}\n'
+		stringOutput += '\\paragraph{}'+titlePageVars['abstract']+'\n'
+		stringOutput += '\\pagebreak\n'
+	if boolVars['toc']:
+		stringOutput += '\n% - TABLE OF CONTENTS -\n'
+		stringOutput += '\\tableofcontents\n'
+		stringOutput += '\\pagebreak\n'
+	else:
+		stringOutput += '\\pagebreak\n'
+	stringOutput += "\\setcounter{page}{0}\n"
+	stringOutput += '\n% - BODY -\n'
 	stringOutput += body
 	stringOutput += "\\end{document}\n"
-	filename = titlePageVars['FileName']
+	filename = titlePageVars['fileName']
 	generate_pdf(filename, stringOutput)
 
 	# commande :

@@ -1,18 +1,3 @@
-bl(number)
-{
-s(porte);
-s(test);
-};
-
-
-bl(number)
-{
-p(test);
-p(test1);
-p(test2);
-};
-
-table(5)
-{
-p(hello);
-};
+toc();
+p(The socks of the, archiduchesse are dry archidry
+dwada.);

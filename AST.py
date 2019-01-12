@@ -121,6 +121,29 @@ class ImageNode(Node):
     def __repr__(self):
         return repr('Image: '+self.tok)
 
+class FrontPageImageNode(Node):
+    type = 'frontpageimage'
+    def __init__(self, tok):
+        Node.__init__(self)
+        self.tok = tok
+    def __repr__(self):
+        return repr('FrontPageImage: '+self.tok)
+
+class AbstractNode(Node):
+    type = 'abstract'
+    def __init__(self, tok):
+        Node.__init__(self)
+        self.tok = tok
+    def __repr__(self):
+        return repr('Abstract: '+self.tok)
+
+class NumberingNode(Node):
+    type = 'numbering'
+    def __init__(self):
+        Node.__init__(self)
+    def __repr__(self):
+        return repr('Toggle Numbering')
+
 class TitleNode(Node):
     type = 'title'
     def __init__(self, tok):
@@ -169,13 +192,20 @@ class ChapterNode(Node):
     def __repr__(self):
         return repr('Chapter: '+self.tok)
 
-class MargeNode(Node):
-    type = 'marge'
+class TocNode(Node):
+    type = 'toc'
+    def __init__(self):
+        Node.__init__(self)
+    def __repr__(self):
+        return repr('Table of content')
+
+class MarginNode(Node):
+    type = 'margin'
     def __init__(self, tok):
         Node.__init__(self)
         self.tok = tok
     def __repr__(self):
-        return repr('Marge: '+self.tok)
+        return repr('Margin: '+self.tok+'cm')
 
 class FileNameNode(Node):
     type = 'filename'
@@ -208,6 +238,14 @@ class TableNode(Node):
         self.tok = tok
     def __repr__(self):
         return repr('Table: '+self.tok.__repr__())
+
+class LanguageNode(Node):
+    type = 'table'
+    def __init__(self, tok):
+        Node.__init__(self)
+        self.tok = tok
+    def __repr__(self):
+        return repr('Language: '+self.tok.__repr__())
 
 class BlocNode(Node):
     type = 'bloc'

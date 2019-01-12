@@ -7,8 +7,7 @@ def thread(self, lastNode):
         lastNode = c.thread(lastNode)
     lastNode.addNext(self)
     return self
-
-#useless for now because DateNode and Author node heritate from Node
+'''
 @addToClass(AST.DateNode)
 def thread(self, lastNode):
     for c in self.children:
@@ -66,7 +65,6 @@ def thread(self, lastNode):
     return self
 
 
-
 @addToClass(AST.MargeNode)
 def thread(self, lastNode):
     for c in self.children:
@@ -87,7 +85,7 @@ def thread(self, lastNode):
         lastNode = c.thread(lastNode)
     lastNode.addNext(self)
     return self
-
+'''
 
 #@addToClass(AST.IfNode)
 #def thread(self, lastNode):

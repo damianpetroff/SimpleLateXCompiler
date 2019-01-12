@@ -1,19 +1,24 @@
 import ply.lex as lex
 
 reserved_words = (
-	'author',
-	'date',
-	'img',
-	'title',
-	'marge',
+	'author', #author
+	'date', #date
+	'img', #image
+	'frontpageimg', #image on titlepage
+	'numbering', #defines if the titles are numbered or not
+	'abstract',
+	'title', #title
+	'margin', #margins
+	'toc', #tableofcontents
+	'language', #language of the document
 	'p', #paragraph
 	'c', #chapter
 	's', #section
 	'ss', #subsection
 	'sss', #subsubsection
-	'filename',
+	'filename', #name of the generated file
 	'bl', #bulletlist
-	'table',
+	'table', #table
 )
 
 tokens = (
@@ -27,7 +32,7 @@ tokens = (
 literals = '();={}'
 
 def t_IDENTIFIER(t):
-	r'\w+(\s+\w+|,|\.\w+|\/\w+|\'+)*'
+	r'\w+(\s+\w+|,|\.\w+|\/\w+|\'+|é|\.)*'
 	if t.value in reserved_words:
 		t.type = t.value.upper()
 	return t

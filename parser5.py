@@ -34,9 +34,25 @@ def p_expression_title(p):
     ''' expression : TITLE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
     p[0] = AST.TitleNode(p[3])
 
+def p_expression_toc(p):
+    ''' expression : TOC PARANTHESIS_OPEN PARANTHESIS_CLOSE '''
+    p[0] = AST.TocNode()
+
 def p_expression_image(p):
     ''' expression : IMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
     p[0] = AST.ImageNode(p[3])
+
+def p_expression_numbering(p):
+    ''' expression : NUMBERING PARANTHESIS_OPEN PARANTHESIS_CLOSE '''
+    p[0] = AST.NumberingNode()
+
+def p_expression_abstract(p):
+    ''' expression : ABSTRACT PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.AbstractNode(p[3])
+
+def p_expression_frontpageimg(p):
+    ''' expression : FRONTPAGEIMG PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.FrontPageImageNode(p[3])
 
 def p_expression_section(p):
     ''' expression : S PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
@@ -54,13 +70,17 @@ def p_expression_chapter(p):
     ''' expression : C PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
     p[0] = AST.ChapterNode(p[3])
 
-def p_expression_marge(p):
-    ''' expression : MARGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
-    p[0] = AST.MargeNode(p[3])
+def p_expression_margin(p):
+    ''' expression : MARGIN PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.MarginNode(p[3])
 
 def p_expression_filename(p):
     ''' expression : FILENAME PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
     p[0] = AST.FileNameNode(p[3])
+
+def p_expression_language(p):
+    ''' expression : LANGUAGE PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE '''
+    p[0] = AST.LanguageNode(p[3])
 
 def p_structure_bl(p):
     ''' structure : BL PARANTHESIS_OPEN IDENTIFIER PARANTHESIS_CLOSE bloc '''
