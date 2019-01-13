@@ -10,7 +10,11 @@
   - and **tabularx** for tables
 
 ## How To Run
-
+1. Ensure that all requirements are ok.
+2. Ensure that all images that you want to have in your document are in the sub-folder "img" and correctly named.
+3. Launch `python path\to\SimpleLateXCompiler.py path\to\input.txt`
+> In this case `python .\SimpleLateXCompiler.py .\input-TEST.txt` (images in .\img\ are used, don't delete them)
+4. Enjoy your `.tex` and `.pdf` files !
 
 ## Documentation
 there's no " between text on command
