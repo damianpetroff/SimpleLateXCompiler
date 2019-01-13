@@ -107,7 +107,14 @@ def execute(node):
 			body += '\\paragraph{}\n'+val+'\n'
 		elif node.__class__ == AST.BulletListNode:
 			val = node.tok
-			#print(val[1])
+			#val[0] = style of bulletlist
+			#val[1] = content
+			for v in val[1].tok.children:
+				print(v.tok)
+		elif node.__class__ == AST.TableNode:
+			val = node.tok
+			#val[0] = size of table 'x' = column (because y is dynamic)
+			#val[1] = content
 			for v in val[1].tok.children:
 				print(v.tok)
 		elif node.__class__ in [AST.EntryNode, AST.ProgramNode]:

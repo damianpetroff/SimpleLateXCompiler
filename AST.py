@@ -260,10 +260,6 @@ class BlocNode(Node):
             t += tok.__repr__()
         return t
 
-    #def execute(self):
-    #    while self.children[0].execute():
-    #        self.children[1].execute()
-
 
 class EntryNode(Node):
     type = 'ENTRY'
