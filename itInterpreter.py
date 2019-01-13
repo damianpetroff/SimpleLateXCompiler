@@ -104,6 +104,8 @@ def execute(node):
 			body += '\n\\subsubsection'+('' if boolVars['numbering'] else '*')+'{'+val+'}\n'
 		elif node.__class__ == AST.ParagraphNode:
 			val = node.tok
+			if val == "#":
+				val = ""
 			body += '\\paragraph{}\n'+val+'\n'
 		elif node.__class__ == AST.BulletListNode:
 			val = node.tok

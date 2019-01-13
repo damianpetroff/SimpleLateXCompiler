@@ -4,3 +4,13 @@ p(un);
 p(deux);
 p(trois);
 };
+
+table(2)
+{
+p(#);
+p(hi);
+p(#);
+p(how are);
+p(#);
+p(you);
+}
