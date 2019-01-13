@@ -24,13 +24,49 @@ Function that initialise the title of the document
 ##### Argument
 * Anything you want, but normaly text
 
+#### FrontPageImage : frontpageimg(path);
+Function that add an image only in the frontpage
+##### Arguements
+* link of the image (absolute or relative to the path of the source file)
+
+### Document settings (details)
+#### Marge : marge(auto);
+##### Arguments
+
+#### Margin : margin(...);
+##### Arguments
+
+#### Filename : filename(...);
+Function that set the name of the .tex file it will generate + .pdf
+##### Arguments
+Anything you want but normaly text, and something like "rapport_..."
+
+#### Language : language(...);
+Function that aload you to change the language of the document (to change the language of some title like the table of content or the chapter)
+##### Arguments
+Languages like : (if you don't have the language downloaded, it will normaly download automaticaly)
+* french
+* english
+* spanish
+* ...
+
 ### Document Element
+#### Abstract : abstract(...);
+Function that create a an abstract of you document
+##### Argument
+* Anything you want but normaly text
+
 #### Paragraph : p(...);
 Function that create a paragraph who's equal to a text zone
 ##### Argument
 * Anything you want, but normaly text
 
-#### Image : img(link);
+#### Table of Content : toc();
+Function that create a table of content dynamic
+##### Arguement
+NO ARGUMENTS
+
+#### Image : img(path);
 Function that add an image on the document
 ##### Argument
 * link of the image (absolute or relative to the path of the source file)
@@ -74,11 +110,11 @@ p(...);
 * number will do a bulletlist enumerated automaticaly (1,2,3,...)
 * letter will do a bulletlist itemized automaticaly (point)
 
-#### Table : table(x/y){p(...);,...};
-Function that create a table of a x,y size who contains the element p in the block
+#### Table : table(x){p(...);,...};
+Function that create a table of a x column and y row who's dynamic. It contains the element p in the block
 Note that you have to fill **every case** with a p() so if you want an empty cell, just put p(#)
 ##### Syntaxe
-table(2/3)
+table(2)
 {
 p(#);
 p(hi);
@@ -98,6 +134,5 @@ this will equal to something like :
 
 ##### Argument
 * x for the number of column
-* y for the number of row
 
 ## Errors

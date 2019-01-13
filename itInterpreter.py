@@ -113,7 +113,7 @@ def execute(node):
 				print(v.tok)
 		elif node.__class__ == AST.TableNode:
 			val = node.tok
-			#val[0] = size of table 'x' = column (because y is dynamic)
+			#val[0] = size of table 'x' = column (because y (= row) is dynamic)
 			#val[1] = content
 			for v in val[1].tok.children:
 				print(v.tok)
