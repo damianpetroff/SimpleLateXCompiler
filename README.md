@@ -10,18 +10,18 @@ there's no " between text on command
 ### Guard page
 #### Author : author(...);
 Function that initialise an author to the document
-##### Argument
+##### Arguments
 * Anything you want, but normaly text
 
 #### Date : date([...,today]);
 Function that initialise a date to the document.
-##### Argument
+##### Arguments
 * Anything you want, but normaly a date
 * today : return the date of today (exemple: date(today) = 11.01.2019)
 
 #### Title : title(...);
 Function that initialise the title of the document
-##### Argument
+##### Arguments
 * Anything you want, but normaly text
 
 #### FrontPageImage : frontpageimg(path);
@@ -35,6 +35,10 @@ Function that add an image only in the frontpage
 
 #### Margin : margin(...);
 ##### Arguments
+
+#### Numbering : numbering();
+##### Arguments
+NO ARGUMENTS
 
 #### Filename : filename(...);
 Function that set the name of the .tex file it will generate + .pdf
@@ -53,46 +57,46 @@ Languages like : (if you don't have the language downloaded, it will normaly dow
 ### Document Element
 #### Abstract : abstract(...);
 Function that create a an abstract of you document
-##### Argument
+##### Arguments
 * Anything you want but normaly text
 
 #### Paragraph : p(...);
 Function that create a paragraph who's equal to a text zone
-##### Argument
+##### Arguments
 * Anything you want, but normaly text
 
 #### Table of Content : toc();
 Function that create a table of content dynamic
-##### Arguement
+##### Arguements
 NO ARGUMENTS
 
 #### Image : img(path);
 Function that add an image on the document
-##### Argument
+##### Arguments
 * link of the image (absolute or relative to the path of the source file)
 
 #### Chapter : c(...);
 Function that create a chapter on the document
 Chapter are automaticaly numbered.
-##### Argument
+##### Arguments
 * Anything you want, but normaly text
 
 #### Section : s(...);
 Function that create a section relative to his parent (**chapter**)
 Section are automaticaly numbered.
-##### Argument
+##### Arguments
 * Anything you want, but normaly text
 
 #### SubSection : ss(...);
 Function that create a subsection relative to his parent (**section**)
 SubSection are automaticaly numbered.
-##### Argument
+##### Arguments
 * Anything you want, but normaly text
 
 #### SubSubSection : sss(...);
 Function that creat a subsubsection relative to his parent (**subsection**)
 SubSubSection are automaticaly numbered.
-##### Argument
+##### Arguments
 * Anything you want, but normaly text
 
 ### Multiple Element
@@ -106,7 +110,7 @@ p(...);
 p(...);
 };
 
-##### Argument
+##### Arguments
 * number will do a bulletlist enumerated automaticaly (1,2,3,...)
 * letter will do a bulletlist itemized automaticaly (point)
 
@@ -132,7 +136,7 @@ this will equal to something like :
 |   | **you ?**    |
 
 
-##### Argument
+##### Arguments
 * x for the number of column
 
 ## Errors
