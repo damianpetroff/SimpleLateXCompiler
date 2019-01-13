@@ -33,7 +33,7 @@ tokens = (
 literals = '();={}'
 
 def t_IDENTIFIER(t):
-	r'\w+(\s+\w+|,|\.\w+|\/\w+|\'+|é|\.)*'
+	r'\w+(\s+\w+|,|\.\w+|\/\w+|\'+|é|à|è|ï|ö|ù|\.)*'
 	if t.value in reserved_words:
 		t.type = t.value.upper()
 	return t

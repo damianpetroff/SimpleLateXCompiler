@@ -109,16 +109,38 @@ def execute(node):
 			body += '\\paragraph{}\n'+val+'\n'
 		elif node.__class__ == AST.BulletListNode:
 			val = node.tok
-			#val[0] = style of bulletlist
-			#val[1] = content
-			for v in val[1].tok.children:
-				print(v.tok)
+			if val[0]=="enum":
+				body += '\\begin{enumerate}\n'
+				for v in val[1].tok.children:
+					if v.__class__ == AST.ParagraphNode:
+						body+= '\t\\item '+v.tok+'\n'
+				body += '\\end{enumerate}\n'
+			elif val[0]=="item":
+				body += '\\begin{itemize}\n'
+				for v in val[1].tok.children:
+					if v.__class__ == AST.ParagraphNode:
+						body+= '\t\\item[-] '+v.tok+'\n'
+				body += '\\end{itemize}\n'
+			else:
+				pass
 		elif node.__class__ == AST.TableNode:
 			val = node.tok
-			#val[0] = size of table 'x' = column (because y (= row) is dynamic)
-			#val[1] = content
-			for v in val[1].tok.children:
-				print(v.tok)
+			if(val[0].isdigit()):
+				nCol = int(val[0])
+				i = 0
+				s = nCol*' c |'
+				body += '\n\\vspace*{0.3cm}\n\\begin{tabular}{|'+s+'}\n\\hline\n'
+				for v in val[1].tok.children:
+					if v.tok == "#":
+						v.tok = ""
+					if i%nCol == nCol-1:
+						body+=v.tok + ' \\\\ \\hline\n'
+					else:
+						body+=v.tok + ' & '
+					i+=1
+				if (i-1)%nCol != nCol-1:
+					body+=((nCol-i%nCol-1)*' & ')+ ' \\\\ \\hline\n'
+				body += '\\end{tabular}\n'
 		elif node.__class__ in [AST.EntryNode, AST.ProgramNode]:
 			pass
 		elif node.__class__ == AST.TokenNode:
@@ -140,8 +162,7 @@ def generate_pdf(filename,stringOutput):
 	rootDir = os.getcwd()
 	pdfname = filename+'.pdf'
 	texname = filename+'.tex'
-	outputFolder = 'output'
-	outputPath = os.path.join(os.getcwd(),outputFolder)
+	outputPath = os.path.join(os.getcwd())
 	if not os.path.exists(outputPath):
 	    os.makedirs(outputPath)
 	filePath = os.path.join(outputPath, texname)
@@ -181,7 +202,7 @@ if __name__ == "__main__":
 	stringOutput = '\\documentclass[a4paper,10pt,openany,oneside]{report}\n'
 	stringOutput += '\n% - PACKAGES -\n'
 	if titlePageVars['margin'] == 'auto':
-		stringOutput += '\\usepackage[left=2cm,right=2cm,top=2cm,includefoot]{geometry}\n'
+		stringOutput += '\\usepackage[left=3cm,right=3cm,top=3cm,includefoot]{geometry}\n'
 	else:
 		margin=titlePageVars['margin']
 		stringOutput += '\\usepackage[left='+margin+'cm,right='+margin+'cm,top='+margin+'cm,includefoot]{geometry}\n'
